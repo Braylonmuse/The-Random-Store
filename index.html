@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Random Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="navbar">
+    <a href="index.html" class="logo">THE RANDOM STORE</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="cart.html" class="cart-link">
+        Cart <span class="cart-count" id="cart-count">0</span>
+      </a>
+    </nav>
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  </header>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart (<span id="cart-count-mobile">0</span>)</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-tag">NEW DROP</p>
+      <h1>Wear the <span>Internet.</span></h1>
+      <p class="hero-sub">Meme clothing & random gear you didn't know you needed.</p>
+      <a href="shop.html" class="btn-primary">Shop Now</a>
+    </div>
+    <div class="hero-art">
+      <div class="hero-blob">
+        <span class="blob-emoji">😂</span>
+        <span class="blob-emoji">🔥</span>
+        <span class="blob-emoji">💀</span>
+        <span class="blob-emoji">🐸</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>FREE SHIPPING OVER $50</span><span>★</span>
+      <span>MEME DROPS WEEKLY</span><span>★</span>
+      <span>SATISFACTION GUARANTEED</span><span>★</span>
+      <span>FREE SHIPPING OVER $50</span><span>★</span>
+      <span>MEME DROPS WEEKLY</span><span>★</span>
+      <span>SATISFACTION GUARANTEED</span><span>★</span>
+      <span>FREE SHIPPING OVER $50</span><span>★</span>
+      <span>MEME DROPS WEEKLY</span><span>★</span>
+    </div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="section featured">
+    <h2 class="section-title">Featured Drops</h2>
+    <div class="product-grid" id="featured-grid"></div>
+    <div class="center-btn">
+      <a href="shop.html" class="btn-outline">View All Products</a>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section categories">
+    <h2 class="section-title">Shop by Vibe</h2>
+    <div class="cat-grid">
+      <a href="shop.html?cat=clothing" class="cat-card cat-clothing">
+        <span class="cat-emoji">👕</span>
+        <span>Clothing</span>
+      </a>
+      <a href="shop.html?cat=accessories" class="cat-card cat-accessories">
+        <span class="cat-emoji">🧢</span>
+        <span>Accessories</span>
+      </a>
+      <a href="shop.html?cat=home" class="cat-card cat-home">
+        <span class="cat-emoji">🏠</span>
+        <span>Home & Decor</span>
+      </a>
+      <a href="shop.html?cat=stickers" class="cat-card cat-stickers">
+        <span class="cat-emoji">🎨</span>
+        <span>Stickers & Art</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo">THE RANDOM STORE</span>
+      <p>© 2026 The Random Store. All rights reserved.</p>
+      <p>Made for meme lords, by meme lords.</p>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    const featured = products.slice(0, 4);
+    renderProducts(featured, 'featured-grid');
+    updateCartCount();
+  </script>
+</body>
+</html>

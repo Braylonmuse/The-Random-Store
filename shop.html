@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — The Random Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo">THE RANDOM STORE</a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="cart.html" class="cart-link">
+        Cart <span class="cart-count" id="cart-count">0</span>
+      </a>
+    </nav>
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  </header>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart (<span id="cart-count-mobile">0</span>)</a>
+  </div>
+
+  <section class="page-header">
+    <h1>All Products</h1>
+  </section>
+
+  <section class="section shop-layout">
+    <!-- FILTERS -->
+    <aside class="filters">
+      <h3>Filter</h3>
+      <div class="filter-group">
+        <label><input type="radio" name="cat" value="all" checked /> All</label>
+        <label><input type="radio" name="cat" value="clothing" /> Clothing</label>
+        <label><input type="radio" name="cat" value="accessories" /> Accessories</label>
+        <label><input type="radio" name="cat" value="home" /> Home & Decor</label>
+        <label><input type="radio" name="cat" value="stickers" /> Stickers & Art</label>
+      </div>
+      <h3>Sort</h3>
+      <select id="sort-select">
+        <option value="default">Default</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name-asc">Name A–Z</option>
+      </select>
+    </aside>
+
+    <!-- GRID -->
+    <div class="shop-main">
+      <p class="result-count" id="result-count"></p>
+      <div class="product-grid" id="shop-grid"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo">THE RANDOM STORE</span>
+      <p>© 2026 The Random Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const initCat = params.get('cat') || 'all';
+    if (initCat !== 'all') {
+      document.querySelector(`input[value="${initCat}"]`).checked = true;
+    }
+
+    function applyFilters() {
+      const cat = document.querySelector('input[name="cat"]:checked').value;
+      const sort = document.getElementById('sort-select').value;
+      let list = cat === 'all' ? [...products] : products.filter(p => p.category === cat);
+      if (sort === 'price-asc') list.sort((a, b) => a.price - b.price);
+      else if (sort === 'price-desc') list.sort((a, b) => b.price - a.price);
+      else if (sort === 'name-asc') list.sort((a, b) => a.name.localeCompare(b.name));
+      renderProducts(list, 'shop-grid');
+      document.getElementById('result-count').textContent = `${list.length} products`;
+    }
+
+    document.querySelectorAll('input[name="cat"]').forEach(r => r.addEventListener('change', applyFilters));
+    document.getElementById('sort-select').addEventListener('change', applyFilters);
+
+    applyFilters();
+    updateCartCount();
+  </script>
+</body>
+</html>
