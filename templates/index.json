@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -25,23 +34,56 @@
           }
         }
       },
-      "block_order": ["stat-1", "stat-2", "stat-3"],
-      "settings": {}
+      "block_order": [
+        "stat-1",
+        "stat-2",
+        "stat-3"
+      ],
+      "settings": {
+        "eyebrow": "🔥 Meme Clothing — Limited Drops",
+        "heading_top": "Wear the",
+        "heading_highlight": "Internet.",
+        "heading_bottom": "Touch Grass\nLater.",
+        "subtext": "Tees, hoodies & hats for the chronically online. Ironic fits, absurd humor, streetwear energy — all the vibes, none of the context.",
+        "risk_text": "✅ Free shipping over $50 · ↩️ 30-day easy returns",
+        "btn1_label": "Shop The Drop — Before It's Gone 🔥",
+        "btn1_link": "",
+        "btn2_label": "See Bestsellers",
+        "btn2_link": "",
+        "show_emoji_bg": true,
+        "emoji_row": "💀 🔥 😭 🐸 🗿 🤡 👁️ 📉 🧠 💸 😼 ✨",
+        "bg_text": "LOL",
+        "min_height": 92,
+        "show_cat": true,
+        "bubble_text": "HE'S WATCHING\nYOUR CART 👁️",
+        "caption_text": "when you see the price\nbut still cop it 💸"
+      }
     },
     "new-drops": {
       "type": "featured-collection",
       "settings": {
         "heading": "New Drops",
-        "limit": 8
+        "collection": "",
+        "limit": 8,
+        "show_view_all": true
       }
     },
     "countdown": {
       "type": "countdown-bar",
-      "settings": {}
+      "settings": {
+        "label": "⏰ NEXT DROP SELLS OUT IN:",
+        "end_time": "",
+        "cta_label": "Cop Now →",
+        "cta_link": ""
+      }
     },
     "bestsellers": {
       "type": "bestsellers-strip",
-      "settings": {}
+      "settings": {
+        "heading": "Bestsellers 🏆",
+        "collection": "",
+        "limit": 5
+      }
     },
     "reviews": {
       "type": "reviews",
@@ -49,27 +91,40 @@
         "review-1": {
           "type": "review",
           "settings": {
+            "stars": 5,
             "quote": "Wore the I'm Fine tee to Thanksgiving. My aunt didn't get it. 10/10 exactly as intended.",
-            "author": "Jordan T."
+            "author": "Jordan T.",
+            "verified": true
           }
         },
         "review-2": {
           "type": "review",
           "settings": {
+            "stars": 5,
             "quote": "The hoodie is actually HEAVY heavy. Quality slaps. Got 3 compliments and 1 confused look — perfect ratio.",
-            "author": "Maya R."
+            "author": "Maya R.",
+            "verified": true
           }
         },
         "review-3": {
           "type": "review",
           "settings": {
+            "stars": 5,
             "quote": "Ordered Tuesday, wearing it Saturday. The Moai cap goes with literally everything because it expresses nothing.",
-            "author": "Dex L."
+            "author": "Dex L.",
+            "verified": true
           }
         }
       },
-      "block_order": ["review-1", "review-2", "review-3"],
-      "settings": {}
+      "block_order": [
+        "review-1",
+        "review-2",
+        "review-3"
+      ],
+      "settings": {
+        "heading": "The People Have Spoken 🗣️",
+        "score_text": "4.9/5 from 200+ reviews"
+      }
     },
     "why": {
       "type": "why-shop",
@@ -99,13 +154,31 @@
           }
         }
       },
-      "block_order": ["card-1", "card-2", "card-3"],
-      "settings": {}
+      "block_order": [
+        "card-1",
+        "card-2",
+        "card-3"
+      ],
+      "settings": {
+        "heading": "Why Shop Here"
+      }
     },
     "newsletter": {
       "type": "newsletter",
-      "settings": {}
+      "settings": {
+        "heading": "Don't Miss\nThe Drop.",
+        "text": "New meme fits drop every Friday. Get first access, exclusive discount codes, and updates straight to your inbox. No spam, only drip.",
+        "button_label": "Subscribe for Early Access 🔥"
+      }
     }
   },
-  "order": ["hero", "new-drops", "countdown", "bestsellers", "reviews", "why", "newsletter"]
+  "order": [
+    "hero",
+    "new-drops",
+    "countdown",
+    "bestsellers",
+    "reviews",
+    "why",
+    "newsletter"
+  ]
 }
