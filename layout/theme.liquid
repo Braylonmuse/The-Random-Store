@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_accent_2 }}">
+  <title>
+    {{- page_title -}}
+    {%- unless page_title contains shop.name %} — {{ shop.name }}{% endunless -%}
+  </title>
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  {% style %}
+    :root {
+      --c1: {{ settings.color_accent_1 }};
+      --c2: {{ settings.color_accent_2 }};
+      --c3: {{ settings.color_accent_3 }};
+      --c4: {{ settings.color_accent_4 }};
+      --c5: {{ settings.color_accent_5 }};
+      --dark: {{ settings.color_dark }};
+      --light: {{ settings.color_light }};
+      --mid: #F5F2E8;
+    }
+  {% endstyle %}
+
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  {{ content_for_header }}
+</head>
+<body>
+  {% section 'header' %}
+
+  <main id="MainContent" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+</body>
+</html>

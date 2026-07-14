@@ -1,0 +1,20 @@
+<div class="account-page">
+  <h1>Activate Account ✨</h1>
+  <div class="account-card" style="max-width: 480px;">
+    {% form 'activate_customer_password' %}
+      {%- if form.errors -%}
+        <div class="form-errors">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <div class="cf-group">
+        <label for="ActivatePassword">Password</label>
+        <input type="password" id="ActivatePassword" name="customer[password]" autocomplete="new-password" required>
+      </div>
+      <div class="cf-group">
+        <label for="ActivatePasswordConfirm">Confirm password</label>
+        <input type="password" id="ActivatePasswordConfirm" name="customer[password_confirmation]" autocomplete="new-password" required>
+      </div>
+      <button type="submit" class="cf-submit" name="commit">Activate Account 🔥</button>
+      <button type="submit" class="fbtn" name="decline" style="margin-top: 10px; width: 100%;">Decline Invitation</button>
+    {% endform %}
+  </div>
+</div>

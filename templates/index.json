@@ -1,0 +1,111 @@
+{
+  "sections": {
+    "hero": {
+      "type": "meme-hero",
+      "blocks": {
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "number": "500+",
+            "label": "Orders Shipped"
+          }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": {
+            "number": "24",
+            "label": "Active Designs"
+          }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": {
+            "number": "4.9★",
+            "label": "Avg Rating"
+          }
+        }
+      },
+      "block_order": ["stat-1", "stat-2", "stat-3"],
+      "settings": {}
+    },
+    "new-drops": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "New Drops",
+        "limit": 8
+      }
+    },
+    "countdown": {
+      "type": "countdown-bar",
+      "settings": {}
+    },
+    "bestsellers": {
+      "type": "bestsellers-strip",
+      "settings": {}
+    },
+    "reviews": {
+      "type": "reviews",
+      "blocks": {
+        "review-1": {
+          "type": "review",
+          "settings": {
+            "quote": "Wore the I'm Fine tee to Thanksgiving. My aunt didn't get it. 10/10 exactly as intended.",
+            "author": "Jordan T."
+          }
+        },
+        "review-2": {
+          "type": "review",
+          "settings": {
+            "quote": "The hoodie is actually HEAVY heavy. Quality slaps. Got 3 compliments and 1 confused look — perfect ratio.",
+            "author": "Maya R."
+          }
+        },
+        "review-3": {
+          "type": "review",
+          "settings": {
+            "quote": "Ordered Tuesday, wearing it Saturday. The Moai cap goes with literally everything because it expresses nothing.",
+            "author": "Dex L."
+          }
+        }
+      },
+      "block_order": ["review-1", "review-2", "review-3"],
+      "settings": {}
+    },
+    "why": {
+      "type": "why-shop",
+      "blocks": {
+        "card-1": {
+          "type": "card",
+          "settings": {
+            "icon": "🎨",
+            "title": "Original Graphics",
+            "text": "Every design is original. No bootleg screenshots — just our own weird takes on internet culture, screen-printed on quality blanks."
+          }
+        },
+        "card-2": {
+          "type": "card",
+          "settings": {
+            "icon": "📦",
+            "title": "Limited Runs Only",
+            "text": "Each drop is capped. When it's gone, it's gone for good. No restocks, no reprints. Own a piece of the timeline."
+          }
+        },
+        "card-3": {
+          "type": "card",
+          "settings": {
+            "icon": "🌍",
+            "title": "Ships Worldwide",
+            "text": "Memes are global. Your fit ships in 5–10 business days anywhere on Earth. Free shipping on orders over $50."
+          }
+        }
+      },
+      "block_order": ["card-1", "card-2", "card-3"],
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "new-drops", "countdown", "bestsellers", "reviews", "why", "newsletter"]
+}

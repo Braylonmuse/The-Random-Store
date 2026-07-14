@@ -1,0 +1,57 @@
+{%- assign col = collections[section.settings.collection] -%}
+<section class="best-strip" id="best">
+  <h2>{{ section.settings.heading }}</h2>
+  <div class="best-items">
+    {%- if col != blank -%}
+      {%- for product in col.products limit: section.settings.limit -%}
+        <a class="best-item" href="{{ product.url }}">
+          {%- if product.featured_image -%}
+            {{ product.featured_image | image_url: width: 96 | image_tag: class: 'bi-thumb', loading: 'lazy', alt: product.title }}
+          {%- else -%}
+            <span class="bi-emoji">🔥</span>
+          {%- endif -%}
+          <div>
+            <div class="bi-name">{{ product.title }}</div>
+            <div class="bi-price">{{ product.price | money }}{% if product.type != blank %} — {{ product.type }}{% endif %}</div>
+          </div>
+        </a>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="best-item"><span class="bi-emoji">🏆</span><div><div class="bi-name">Pick a collection</div><div class="bi-price">in the theme editor</div></div></div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bestsellers strip",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Bestsellers 🏆"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Maximum products",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bestsellers strip"
+    }
+  ]
+}
+{% endschema %}

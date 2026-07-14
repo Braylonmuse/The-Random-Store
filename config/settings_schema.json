@@ -1,0 +1,82 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "The Random Store",
+    "theme_version": "1.0.0",
+    "theme_author": "The Random Store",
+    "theme_documentation_url": "https://github.com/Braylonmuse/The-Random-Store",
+    "theme_support_url": "https://github.com/Braylonmuse/The-Random-Store/issues"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_accent_1",
+        "label": "Accent 1 (red)",
+        "default": "#FF3B3F"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_2",
+        "label": "Accent 2 (yellow)",
+        "default": "#FFDD00"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_3",
+        "label": "Accent 3 (blue)",
+        "default": "#00C2FF"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_4",
+        "label": "Accent 4 (pink)",
+        "default": "#FF6BFF"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_5",
+        "label": "Accent 5 (green)",
+        "default": "#00E68A"
+      },
+      {
+        "type": "color",
+        "id": "color_dark",
+        "label": "Dark / ink",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "color_light",
+        "label": "Background",
+        "default": "#FFFDF5"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter",
+        "label": "Twitter / X URL"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube",
+        "label": "YouTube URL"
+      }
+    ]
+  }
+]

@@ -1,0 +1,327 @@
+{% comment %}
+  Meme Hero — animated emoji background, SVG cat mascot, headline,
+  CTA buttons and a stats row. Everything is editable in the customizer.
+{% endcomment %}
+
+{% style %}
+  .meme-hero { background: var(--dark); border-bottom: 4px solid var(--dark); min-height: {{ section.settings.min_height }}vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 0 40px; position: relative; overflow: hidden; }
+  .meme-hero .meme-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: space-around; background: var(--c2); }
+  .meme-hero .meme-row { white-space: nowrap; font-size: 64px; line-height: 1.4; opacity: 0.5; letter-spacing: 24px; will-change: transform; }
+  .meme-hero .meme-row-1 { animation: mh-scroll-left 38s linear infinite; }
+  .meme-hero .meme-row-2 { animation: mh-scroll-right 44s linear infinite; }
+  .meme-hero .meme-row-3 { animation: mh-scroll-left 32s linear infinite; }
+  .meme-hero .meme-row-4 { animation: mh-scroll-right 50s linear infinite; }
+  .meme-hero .meme-row-5 { animation: mh-scroll-left 42s linear infinite; }
+  @keyframes mh-scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes mh-scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  .meme-hero .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,221,0,0.55) 0%, rgba(255,59,63,0.12) 55%, rgba(0,0,0,0.35) 100%); z-index: 1; pointer-events: none; }
+  .meme-hero .hero-bg-text { position: absolute; font-family: 'Boogaloo', cursive; font-size: 320px; color: rgba(255,255,255,0.06); right: -40px; top: 50%; transform: translateY(-50%); pointer-events: none; line-height: 1; white-space: nowrap; z-index: 1; }
+  .meme-hero .hero-text { position: relative; z-index: 3; padding: 60px 0; }
+  .meme-hero .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--c1); color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border: 2px solid var(--dark); margin-bottom: 20px; font-family: 'Space Mono', monospace; animation: fadeUp 0.6s ease both; }
+  .meme-hero h1 { font-family: 'Boogaloo', cursive; font-size: 96px; line-height: 0.92; color: #fff; margin-bottom: 24px; animation: fadeUp 0.7s ease 0.1s both; text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+  .meme-hero h1 em { color: var(--c2); font-style: normal; display: block; text-shadow: 3px 3px 0 rgba(0,0,0,0.2); }
+  .meme-hero .hero-sub { font-size: 13px; color: #fff; line-height: 1.7; max-width: 400px; margin-bottom: 32px; animation: fadeUp 0.7s ease 0.2s both; font-weight: 700; text-shadow: 1px 1px 4px rgba(0,0,0,0.6); }
+  .meme-hero .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.3s both; }
+  .meme-hero .hero-risk { margin-top: 14px; font-size: 11px; color: #fff; font-weight: 700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); animation: fadeUp 0.7s ease 0.35s both; }
+  .meme-hero .hero-stats { display: flex; gap: 28px; margin-top: 40px; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.4s both; }
+  .meme-hero .hero-stat-num { font-family: 'Boogaloo', cursive; font-size: 32px; color: var(--c2); display: block; text-shadow: 2px 2px 0 rgba(0,0,0,0.3); }
+  .meme-hero .hero-stat-lbl { font-size: 10px; color: #fff; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+  .meme-hero .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; z-index: 3; animation: fadeUp 0.8s ease 0.2s both; }
+  .meme-hero .cat-meme-wrap { display: flex; flex-direction: column; align-items: center; position: relative; }
+  .meme-hero .cat-svg { width: 280px; height: 300px; filter: drop-shadow(4px 6px 0px rgba(0,0,0,0.5)); animation: mh-cat-float 3s ease-in-out infinite; }
+  @keyframes mh-cat-float { 0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-12px) rotate(1deg);} }
+  .meme-hero .cat-meme-bubble { background: #fff; border: 3px solid var(--dark); border-radius: 16px; padding: 10px 18px; font-family: 'Boogaloo', cursive; font-size: 17px; color: var(--dark); text-align: center; line-height: 1.3; box-shadow: 4px 4px 0 var(--dark); position: relative; margin-bottom: 12px; animation: mh-cat-float 3s ease-in-out infinite 0.3s; }
+  .meme-hero .cat-meme-bubble::after { content: ''; position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%); border: 8px solid transparent; border-top-color: var(--dark); }
+  .meme-hero .cat-meme-bubble::before { content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); border: 7px solid transparent; border-top-color: #fff; z-index: 1; }
+  .meme-hero .cat-caption { background: var(--c2); border: 3px solid var(--dark); border-radius: 10px; padding: 8px 18px; font-family: 'Boogaloo', cursive; font-size: 15px; color: var(--dark); text-align: center; line-height: 1.4; box-shadow: 4px 4px 0 var(--dark); margin-top: 14px; }
+  @media (max-width: 768px) {
+    .meme-hero { grid-template-columns: 1fr; min-height: auto; padding: 40px 20px; }
+    .meme-hero h1 { font-size: 60px; }
+    .meme-hero .hero-text { padding: 0; }
+    .meme-hero .hero-visual { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .meme-hero .meme-row, .meme-hero .cat-svg, .meme-hero .cat-meme-bubble { animation: none; }
+  }
+{% endstyle %}
+
+{%- assign emoji_half = section.settings.emoji_row | append: ' ' | append: section.settings.emoji_row -%}
+
+<section class="meme-hero">
+  {%- if section.settings.show_emoji_bg -%}
+    <div class="meme-bg" aria-hidden="true">
+      {%- for i in (1..5) -%}
+        <div class="meme-row meme-row-{{ i }}">{{ emoji_half }} {{ emoji_half }}</div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+  <div class="hero-overlay"></div>
+
+  <div class="hero-text">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="hero-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    <h1>
+      {%- if section.settings.heading_top != blank -%}
+        {{ section.settings.heading_top | newline_to_br }}
+      {%- endif -%}
+      {%- if section.settings.heading_highlight != blank -%}
+        <em>{{ section.settings.heading_highlight }}</em>
+      {%- endif -%}
+      {%- if section.settings.heading_bottom != blank -%}
+        {{ section.settings.heading_bottom | newline_to_br }}
+      {%- endif -%}
+    </h1>
+    {%- if section.settings.subtext != blank -%}
+      <p class="hero-sub">{{ section.settings.subtext }}</p>
+    {%- endif -%}
+    <div class="hero-btns">
+      {%- if section.settings.btn1_label != blank -%}
+        <a class="btn-dark" href="{{ section.settings.btn1_link | default: routes.all_products_collection_url }}">{{ section.settings.btn1_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.btn2_label != blank -%}
+        <a class="btn-outline" href="{{ section.settings.btn2_link | default: routes.collections_url }}">{{ section.settings.btn2_label }}</a>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.risk_text != blank -%}
+      <div class="hero-risk">{{ section.settings.risk_text }}</div>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="hero-stats">
+        {%- for block in section.blocks -%}
+          <div {{ block.shopify_attributes }}>
+            <span class="hero-stat-num">{{ block.settings.number }}</span>
+            <span class="hero-stat-lbl">{{ block.settings.label }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_cat -%}
+    <div class="hero-visual">
+      <div class="cat-meme-wrap">
+        {%- if section.settings.bubble_text != blank -%}
+          <div class="cat-meme-bubble">{{ section.settings.bubble_text | newline_to_br }}</div>
+        {%- endif -%}
+        <svg class="cat-svg" viewBox="0 0 260 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Shocked cat meme">
+          <polygon points="40,90 20,30 80,70" fill="#888" stroke="#111" stroke-width="3"/>
+          <polygon points="220,90 240,30 180,70" fill="#888" stroke="#111" stroke-width="3"/>
+          <polygon points="45,82 30,44 74,72" fill="#FF6BFF"/>
+          <polygon points="215,82 230,44 186,72" fill="#FF6BFF"/>
+          <ellipse cx="130" cy="150" rx="100" ry="95" fill="#aaa" stroke="#111" stroke-width="4"/>
+          <ellipse cx="130" cy="160" rx="65" ry="60" fill="#ccc"/>
+          <ellipse cx="90" cy="135" rx="28" ry="32" fill="white" stroke="#111" stroke-width="3"/>
+          <ellipse cx="170" cy="135" rx="28" ry="32" fill="white" stroke="#111" stroke-width="3"/>
+          <ellipse cx="90" cy="138" rx="16" ry="22" fill="#1a0a00"/>
+          <ellipse cx="170" cy="138" rx="16" ry="22" fill="#1a0a00"/>
+          <ellipse cx="90" cy="132" rx="10" ry="14" fill="#FF9900" opacity="0.7"/>
+          <ellipse cx="170" cy="132" rx="10" ry="14" fill="#FF9900" opacity="0.7"/>
+          <circle cx="80" cy="125" r="5" fill="white"/>
+          <circle cx="160" cy="125" r="5" fill="white"/>
+          <circle cx="85" cy="132" r="2.5" fill="white"/>
+          <circle cx="165" cy="132" r="2.5" fill="white"/>
+          <path d="M62 105 Q90 90 118 100" stroke="#555" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M142 100 Q170 90 198 105" stroke="#555" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M118 165 L130 170 L142 165 L130 178 Z" fill="#FF6BFF" stroke="#111" stroke-width="1.5"/>
+          <path d="M108 184 Q130 215 152 184" fill="#cc3333" stroke="#111" stroke-width="2"/>
+          <rect x="118" y="185" width="10" height="12" rx="2" fill="white" stroke="#ccc" stroke-width="1"/>
+          <rect x="132" y="185" width="10" height="12" rx="2" fill="white" stroke="#ccc" stroke-width="1"/>
+          <line x1="30" y1="162" x2="100" y2="170" stroke="#555" stroke-width="2" opacity="0.8"/>
+          <line x1="25" y1="175" x2="98" y2="177" stroke="#555" stroke-width="2" opacity="0.8"/>
+          <line x1="30" y1="188" x2="100" y2="184" stroke="#555" stroke-width="2" opacity="0.8"/>
+          <line x1="230" y1="162" x2="160" y2="170" stroke="#555" stroke-width="2" opacity="0.8"/>
+          <line x1="235" y1="175" x2="162" y2="177" stroke="#555" stroke-width="2" opacity="0.8"/>
+          <line x1="230" y1="188" x2="160" y2="184" stroke="#555" stroke-width="2" opacity="0.8"/>
+          <ellipse cx="210" cy="110" rx="7" ry="10" fill="#00C2FF" opacity="0.9"/>
+          <polygon points="210,97 205,110 215,110" fill="#00C2FF" opacity="0.9"/>
+        </svg>
+        {%- if section.settings.caption_text != blank -%}
+          <div class="cat-caption">{{ section.settings.caption_text | newline_to_br }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.bg_text != blank -%}
+    <div class="hero-bg-text" aria-hidden="true">{{ section.settings.bg_text }}</div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Meme Hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow badge",
+      "default": "🔥 Meme Clothing — Limited Drops"
+    },
+    {
+      "type": "textarea",
+      "id": "heading_top",
+      "label": "Heading (before highlight)",
+      "default": "Wear the"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Heading highlight (accent color)",
+      "default": "Internet."
+    },
+    {
+      "type": "textarea",
+      "id": "heading_bottom",
+      "label": "Heading (after highlight)",
+      "default": "Touch Grass\nLater."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Tees, hoodies & hats for the chronically online. Ironic fits, absurd humor, streetwear energy — all the vibes, none of the context."
+    },
+    {
+      "type": "text",
+      "id": "risk_text",
+      "label": "Reassurance line",
+      "default": "✅ Free shipping over $50 · ↩️ 30-day easy returns"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "btn1_label",
+      "label": "Primary button label",
+      "default": "Shop The Drop — Before It's Gone 🔥"
+    },
+    {
+      "type": "url",
+      "id": "btn1_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "btn2_label",
+      "label": "Secondary button label",
+      "default": "See Bestsellers"
+    },
+    {
+      "type": "url",
+      "id": "btn2_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_emoji_bg",
+      "label": "Show animated emoji background",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "emoji_row",
+      "label": "Background emojis",
+      "default": "💀 🔥 😭 🐸 🗿 🤡 👁️ 📉 🧠 💸 😼 ✨"
+    },
+    {
+      "type": "text",
+      "id": "bg_text",
+      "label": "Giant background word",
+      "default": "LOL"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Minimum height (% of screen)",
+      "min": 50,
+      "max": 100,
+      "step": 2,
+      "unit": "vh",
+      "default": 92
+    },
+    {
+      "type": "header",
+      "content": "Cat mascot"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cat",
+      "label": "Show cat mascot",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "bubble_text",
+      "label": "Speech bubble text",
+      "default": "HE'S WATCHING\nYOUR CART 👁️"
+    },
+    {
+      "type": "textarea",
+      "id": "caption_text",
+      "label": "Caption text",
+      "default": "when you see the price\nbut still cop it 💸"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "500+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Orders Shipped"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Meme Hero",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "number": "500+",
+            "label": "Orders Shipped"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "24",
+            "label": "Active Designs"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "4.9★",
+            "label": "Avg Rating"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

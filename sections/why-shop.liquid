@@ -1,0 +1,85 @@
+<section class="why-section">
+  <h2>{{ section.settings.heading }}</h2>
+  <div class="why-grid">
+    {%- for block in section.blocks -%}
+      <div class="why-card" {{ block.shopify_attributes }}>
+        <div class="why-icon">{{ block.settings.icon }}</div>
+        <h3>{{ block.settings.title }}</h3>
+        <p>{{ block.settings.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why shop here",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Shop Here"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji icon",
+          "default": "🎨"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Original Graphics"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Every design is original. No bootleg screenshots — just our own weird takes on internet culture."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Why shop here",
+      "blocks": [
+        {
+          "type": "card",
+          "settings": {
+            "icon": "🎨",
+            "title": "Original Graphics",
+            "text": "Every design is original. No bootleg screenshots — just our own weird takes on internet culture, screen-printed on quality blanks."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "📦",
+            "title": "Limited Runs Only",
+            "text": "Each drop is capped. When it's gone, it's gone for good. No restocks, no reprints. Own a piece of the timeline."
+          }
+        },
+        {
+          "type": "card",
+          "settings": {
+            "icon": "🌍",
+            "title": "Ships Worldwide",
+            "text": "Memes are global. Your fit ships in 5–10 business days anywhere on Earth. Free shipping on orders over $50."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

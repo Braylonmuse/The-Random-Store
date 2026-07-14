@@ -1,0 +1,59 @@
+<section class="newsletter">
+  <div class="nl-text">
+    <h2>{{ section.settings.heading | newline_to_br }}</h2>
+    <p>{{ section.settings.text }}</p>
+  </div>
+  {% form 'customer', class: 'nl-form' %}
+    {%- if form.posted_successfully? -%}
+      <div class="nl-success">✅ You're in! Watch your inbox.</div>
+    {%- else -%}
+      {%- if form.errors -%}
+        <div class="form-errors">{{ form.errors | default_errors }}</div>
+      {%- endif -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label class="visually-hidden" for="NewsletterEmail-{{ section.id }}">Email</label>
+      <input
+        class="nl-input"
+        id="NewsletterEmail-{{ section.id }}"
+        type="email"
+        name="contact[email]"
+        value="{{ form.email }}"
+        placeholder="your@email.com"
+        required
+      >
+      <button class="nl-btn" type="submit">{{ section.settings.button_label }}</button>
+    {%- endif -%}
+  {% endform %}
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Don't Miss\nThe Drop."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "New meme fits drop every Friday. Get first access, exclusive discount codes, and updates straight to your inbox. No spam, only drip."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe for Early Access 🔥"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

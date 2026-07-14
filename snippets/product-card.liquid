@@ -1,0 +1,41 @@
+{% comment %}
+  Renders one product card in the meme style.
+  Usage: {% render 'product-card', product: product %}
+{% endcomment %}
+<div class="pcard">
+  <a href="{{ product.url }}">
+    <div class="pthumb">
+      {%- if product.available == false -%}
+        <div class="pbadge sold-out-badge">SOLD OUT</div>
+      {%- elsif product.compare_at_price > product.price -%}
+        <div class="pbadge">SALE</div>
+      {%- elsif product.tags contains 'new' or product.tags contains 'NEW' -%}
+        <div class="pbadge">NEW</div>
+      {%- elsif product.tags contains 'hot' or product.tags contains 'HOT' -%}
+        <div class="pbadge">HOT</div>
+      {%- endif -%}
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 480 | image_tag: loading: 'lazy', alt: product.featured_image.alt | default: product.title }}
+      {%- else -%}
+        <span class="placeholder-emoji">👕</span>
+      {%- endif -%}
+    </div>
+  </a>
+  <div class="pinfo">
+    <a href="{{ product.url }}" class="pname">{{ product.title }}</a>
+    <div class="psub">
+      {{ product.type | default: 'MEME FIT' }}
+    </div>
+    <div class="pbottom">
+      <span class="pprice">
+        {%- if product.compare_at_price > product.price -%}
+          <span class="compare-at">{{ product.compare_at_price | money }}</span>
+        {%- endif -%}
+        {{ product.price | money }}
+      </span>
+      <a class="padd" href="{{ product.url }}">
+        {%- if product.available %}+ Add{% else %}Gone 💀{% endif -%}
+      </a>
+    </div>
+  </div>
+</div>

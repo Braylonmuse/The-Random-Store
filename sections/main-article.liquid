@@ -1,0 +1,22 @@
+<div class="page-banner" style="background: var(--c2);">
+  <h1>{{ article.title }}</h1>
+  <p>{{ article.published_at | date: '%B %d, %Y' }}{% if article.author != blank %} · {{ article.author }}{% endif %}</p>
+</div>
+
+<section class="shop-section">
+  {%- if article.image -%}
+    <div style="max-width: 720px; margin: 0 auto 28px; border: 3px solid var(--dark); border-radius: 14px; overflow: hidden; box-shadow: 6px 6px 0 var(--dark);">
+      {{ article.image | image_url: width: 1200 | image_tag: alt: article.title }}
+    </div>
+  {%- endif -%}
+  <div class="rte">
+    {{ article.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "section"
+}
+{% endschema %}

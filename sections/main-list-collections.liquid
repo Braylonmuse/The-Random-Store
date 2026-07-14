@@ -1,0 +1,48 @@
+<div class="page-banner" style="background: var(--c4);">
+  <h1>{{ section.settings.title }}</h1>
+  {%- if section.settings.subtext != blank -%}
+    <p>{{ section.settings.subtext }}</p>
+  {%- endif -%}
+</div>
+
+<section class="shop-section">
+  <div class="collections-grid">
+    {%- for collection in collections -%}
+      <a class="collection-card" href="{{ collection.url }}">
+        {%- if collection.featured_image -%}
+          {{ collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: collection.title }}
+        {%- else -%}
+          <div class="collection-emoji">📦</div>
+        {%- endif -%}
+        <div class="collection-info">
+          <div class="collection-name">{{ collection.title }}</div>
+          {%- if collection.description != blank -%}
+            <div class="collection-desc">{{ collection.description | strip_html | truncate: 80 }}</div>
+          {%- endif -%}
+          <div class="collection-count">{{ collection.products_count }} items →</div>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Collections"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Curated capsule drops. Each collection is a whole mood — shop the full set."
+    }
+  ]
+}
+{% endschema %}

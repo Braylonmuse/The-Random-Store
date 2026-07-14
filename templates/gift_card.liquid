@@ -1,0 +1,34 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>{{ shop.name }} — Gift Card</title>
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  {{ content_for_header }}
+  <style>
+    body { font-family: 'Space Mono', monospace; background: #FFFDF5; color: #111; text-align: center; padding: 40px 20px; }
+    .gc-card { max-width: 420px; margin: 0 auto; border: 3px solid #111; border-radius: 16px; padding: 32px; box-shadow: 8px 8px 0 #111; background: #FFDD00; }
+    h1 { font-family: 'Boogaloo', cursive; font-size: 34px; margin-bottom: 8px; }
+    .gc-amount { font-family: 'Boogaloo', cursive; font-size: 48px; margin: 14px 0; }
+    .gc-code { background: #fff; border: 2px dashed #111; border-radius: 8px; padding: 12px; font-size: 18px; letter-spacing: 2px; margin: 14px 0; }
+    a { color: #111; }
+  </style>
+</head>
+<body>
+  <div class="gc-card">
+    <h1>{{ shop.name }} 🎁</h1>
+    <p>Here's your gift card!</p>
+    <div class="gc-amount">{{ gift_card.initial_value | money }}</div>
+    <div class="gc-code">{{ gift_card.code | format_code }}</div>
+    {%- if gift_card.expired -%}
+      <p>⚠️ This gift card has expired.</p>
+    {%- elsif gift_card.balance != gift_card.initial_value -%}
+      <p>Remaining balance: {{ gift_card.balance | money }}</p>
+    {%- endif -%}
+    <p><a href="{{ shop.url }}">Use it on some memes →</a></p>
+  </div>
+</body>
+</html>

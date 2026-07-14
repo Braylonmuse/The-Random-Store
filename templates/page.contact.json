@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-contact",
+      "blocks": {
+        "method-1": {
+          "type": "method",
+          "settings": {
+            "icon": "✉️",
+            "label": "Email",
+            "value": "hey@therandomstore.com"
+          }
+        },
+        "method-2": {
+          "type": "method",
+          "settings": {
+            "icon": "📸",
+            "label": "Instagram",
+            "value": "@therandomstore"
+          }
+        },
+        "method-3": {
+          "type": "method",
+          "settings": {
+            "icon": "📍",
+            "label": "Based in",
+            "value": "Louisiana, USA · Ships worldwide"
+          }
+        }
+      },
+      "block_order": ["method-1", "method-2", "method-3"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

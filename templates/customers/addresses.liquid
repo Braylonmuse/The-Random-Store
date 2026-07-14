@@ -1,0 +1,66 @@
+<div class="account-page">
+  <h1>Addresses 📬</h1>
+  <p style="font-size: 12px; margin-bottom: 20px;">
+    <a class="form-link" href="{{ routes.account_url }}">← Back to account</a>
+  </p>
+
+  {%- paginate customer.addresses by 10 -%}
+    {%- for address in customer.addresses -%}
+      <div class="address-card">
+        {%- if address == customer.default_address -%}
+          <strong>Default</strong><br>
+        {%- endif -%}
+        {{ address | format_address }}
+        <form method="post" action="/account/addresses/{{ address.id }}" onsubmit="return confirm('Delete this address?');">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" class="fbtn" style="font-size: 13px; padding: 4px 12px;">Delete</button>
+        </form>
+      </div>
+    {%- endfor -%}
+  {%- endpaginate -%}
+
+  <h2>Add a New Address</h2>
+  <div class="account-card" style="max-width: 520px;">
+    {% form 'customer_address', customer.new_address %}
+      <div class="cf-group">
+        <label for="AddressFirstName">First name</label>
+        <input type="text" id="AddressFirstName" name="address[first_name]" autocomplete="given-name">
+      </div>
+      <div class="cf-group">
+        <label for="AddressLastName">Last name</label>
+        <input type="text" id="AddressLastName" name="address[last_name]" autocomplete="family-name">
+      </div>
+      <div class="cf-group">
+        <label for="AddressAddress1">Address</label>
+        <input type="text" id="AddressAddress1" name="address[address1]" autocomplete="address-line1">
+      </div>
+      <div class="cf-group">
+        <label for="AddressAddress2">Apartment, suite, etc.</label>
+        <input type="text" id="AddressAddress2" name="address[address2]" autocomplete="address-line2">
+      </div>
+      <div class="cf-group">
+        <label for="AddressCity">City</label>
+        <input type="text" id="AddressCity" name="address[city]" autocomplete="address-level2">
+      </div>
+      <div class="cf-group">
+        <label for="AddressCountry">Country/region</label>
+        <select id="AddressCountry" name="address[country]" data-default="{{ form.country }}">
+          {{ country_option_tags }}
+        </select>
+      </div>
+      <div class="cf-group">
+        <label for="AddressProvince">State/province</label>
+        <input type="text" id="AddressProvince" name="address[province]" autocomplete="address-level1">
+      </div>
+      <div class="cf-group">
+        <label for="AddressZip">Postal/ZIP code</label>
+        <input type="text" id="AddressZip" name="address[zip]" autocomplete="postal-code">
+      </div>
+      <div class="cf-group">
+        <label for="AddressPhone">Phone</label>
+        <input type="tel" id="AddressPhone" name="address[phone]" autocomplete="tel">
+      </div>
+      <button type="submit" class="cf-submit">Save Address 🔥</button>
+    {% endform %}
+  </div>
+</div>

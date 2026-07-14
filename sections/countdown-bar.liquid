@@ -1,0 +1,83 @@
+<section class="countdown-bar">
+  <span class="cd-label">{{ section.settings.label }}</span>
+  <div class="cd-timer" id="Countdown-{{ section.id }}">
+    <div class="cd-unit"><span class="cd-num" data-cd="days">00</span><span class="cd-lbl">Days</span></div>
+    <div class="cd-unit"><span class="cd-num" data-cd="hours">00</span><span class="cd-lbl">Hrs</span></div>
+    <div class="cd-unit"><span class="cd-num" data-cd="mins">00</span><span class="cd-lbl">Min</span></div>
+    <div class="cd-unit"><span class="cd-num" data-cd="secs">00</span><span class="cd-lbl">Sec</span></div>
+  </div>
+  {%- if section.settings.cta_label != blank -%}
+    <a class="cd-cta" href="{{ section.settings.cta_link | default: routes.all_products_collection_url }}">{{ section.settings.cta_label }}</a>
+  {%- endif -%}
+</section>
+
+<script>
+  (function () {
+    var wrap = document.getElementById('Countdown-{{ section.id }}');
+    if (!wrap) return;
+    var fixed = {{ section.settings.end_time | json }};
+    var target = fixed ? new Date(fixed) : null;
+    if (!target || isNaN(target.getTime()) || target <= new Date()) {
+      // Fall back to next Friday at noon, rolling weekly
+      var d = new Date();
+      d.setDate(d.getDate() + ((5 - d.getDay() + 7) % 7 || 7));
+      d.setHours(12, 0, 0, 0);
+      if (d <= new Date()) d.setDate(d.getDate() + 7);
+      target = d;
+    }
+    var els = {
+      days: wrap.querySelector('[data-cd="days"]'),
+      hours: wrap.querySelector('[data-cd="hours"]'),
+      mins: wrap.querySelector('[data-cd="mins"]'),
+      secs: wrap.querySelector('[data-cd="secs"]')
+    };
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      var diff = target - new Date();
+      if (diff <= 0) diff = 0;
+      els.days.textContent = pad(Math.floor(diff / 86400000));
+      els.hours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      els.mins.textContent = pad(Math.floor((diff % 3600000) / 60000));
+      els.secs.textContent = pad(Math.floor((diff % 60000) / 1000));
+    }
+    setInterval(tick, 1000);
+    tick();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Countdown bar",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "⏰ NEXT DROP SELLS OUT IN:"
+    },
+    {
+      "type": "text",
+      "id": "end_time",
+      "label": "Countdown target (YYYY-MM-DDTHH:MM)",
+      "info": "Leave blank to automatically count down to next Friday at noon, repeating weekly."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Cop Now →"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown bar"
+    }
+  ]
+}
+{% endschema %}

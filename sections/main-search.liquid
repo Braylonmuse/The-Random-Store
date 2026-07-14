@@ -1,0 +1,62 @@
+<div class="page-banner" style="background: var(--c3);">
+  <h1>Search</h1>
+  {%- if search.performed -%}
+    <p>{{ search.results_count }} results for "{{ search.terms | escape }}"</p>
+  {%- endif -%}
+</div>
+
+<section class="shop-section">
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-bar">
+    <label class="visually-hidden" for="SearchInput">Search</label>
+    <input id="SearchInput" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search the memes...">
+    <button type="submit" class="btn-dark" style="padding: 12px 24px;">Search 🔍</button>
+  </form>
+
+  {%- if search.performed -%}
+    {%- paginate search.results by 24 -%}
+      {%- if search.results_count > 0 -%}
+        <div class="products">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'product-card', product: item %}
+            {%- else -%}
+              <div class="pcard">
+                <div class="pinfo">
+                  <a class="pname" href="{{ item.url }}">{{ item.title }}</a>
+                  <div class="psub">{{ item.object_type }}</div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        {%- if paginate.pages > 1 -%}
+          <div class="pagination">
+            {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">←</a>{%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}">{{ part.title }}</a>
+              {%- elsif part.title == paginate.current_page -%}
+                <span class="current">{{ part.title }}</span>
+              {%- else -%}
+                <span>{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}<a href="{{ paginate.next.url }}">→</a>{%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div class="cart-empty">
+          <div class="empty-icon">🫠</div>
+          <p>No results.<br>The meme you seek does not exist.</p>
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Search page",
+  "tag": "section"
+}
+{% endschema %}

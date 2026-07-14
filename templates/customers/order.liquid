@@ -1,0 +1,40 @@
+<div class="account-page">
+  <h1>Order {{ order.name }}</h1>
+  <p style="font-size: 12px; margin-bottom: 20px;">
+    Placed {{ order.created_at | date: '%B %d, %Y' }} ·
+    <a class="form-link" href="{{ routes.account_url }}">← Back to account</a>
+  </p>
+
+  <table class="order-table">
+    <thead>
+      <tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th></tr>
+    </thead>
+    <tbody>
+      {%- for line_item in order.line_items -%}
+        <tr>
+          <td>{{ line_item.title }}</td>
+          <td>{{ line_item.quantity }}</td>
+          <td>{{ line_item.final_price | money }}</td>
+          <td>{{ line_item.final_line_price | money }}</td>
+        </tr>
+      {%- endfor -%}
+    </tbody>
+  </table>
+
+  <h2>Totals</h2>
+  <div style="max-width: 320px;">
+    <div class="dt-row"><span>Subtotal</span><span>{{ order.line_items_subtotal_price | money }}</span></div>
+    {%- for shipping_method in order.shipping_methods -%}
+      <div class="dt-row"><span>Shipping ({{ shipping_method.title }})</span><span>{{ shipping_method.price | money }}</span></div>
+    {%- endfor -%}
+    {%- for tax_line in order.tax_lines -%}
+      <div class="dt-row"><span>Tax ({{ tax_line.title }})</span><span>{{ tax_line.price | money }}</span></div>
+    {%- endfor -%}
+    <div class="dt-row total"><span>Total</span><span>{{ order.total_price | money }}</span></div>
+  </div>
+
+  {%- if order.shipping_address -%}
+    <h2>Shipping Address</h2>
+    <div class="address-card">{{ order.shipping_address | format_address }}</div>
+  {%- endif -%}
+</div>

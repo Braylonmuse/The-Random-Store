@@ -1,0 +1,75 @@
+<div class="product-page">
+  <div>
+    <div class="product-media">
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 1000 | image_tag: alt: product.featured_image.alt | default: product.title }}
+      {%- else -%}
+        <span class="placeholder-emoji">👕</span>
+      {%- endif -%}
+    </div>
+    {%- if product.images.size > 1 -%}
+      <div class="product-thumbs">
+        {%- for image in product.images limit: 6 -%}
+          {{ image | image_url: width: 128 | image_tag: loading: 'lazy', alt: image.alt | default: product.title }}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="product-details">
+    {%- if product.vendor != blank -%}
+      <div class="product-vendor">{{ product.vendor }}</div>
+    {%- endif -%}
+    <h1>{{ product.title }}</h1>
+    <div class="product-price">
+      {%- if product.compare_at_price > product.price -%}
+        <span class="compare-at">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+      {{ product.price | money }}
+    </div>
+    <div class="product-desc">{{ product.description }}</div>
+
+    {% form 'product', product %}
+      {%- unless product.has_only_default_variant -%}
+        <div class="variant-group">
+          <label for="Variants-{{ section.id }}">Select option</label>
+          <select class="variant-select" id="Variants-{{ section.id }}" name="id">
+            {%- for variant in product.variants -%}
+              <option
+                value="{{ variant.id }}"
+                {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+                {% unless variant.available %}disabled{% endunless %}
+              >
+                {{ variant.title }} — {{ variant.price | money }}{% unless variant.available %} (sold out){% endunless %}
+              </option>
+            {%- endfor -%}
+          </select>
+        </div>
+      {%- else -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      {%- endunless -%}
+
+      <div class="variant-group">
+        <label for="Quantity-{{ section.id }}">Quantity</label>
+        <input class="qty-input" id="Quantity-{{ section.id }}" type="number" name="quantity" value="1" min="1">
+      </div>
+
+      <button type="submit" class="add-to-cart-btn" {% unless product.available %}disabled{% endunless %}>
+        {%- if product.available %}Add to Cart 🔥{% else %}Sold Out 💀{% endif -%}
+      </button>
+    {% endform %}
+
+    <div class="trust-badges">
+      <span>🔒 Secure Checkout</span>
+      <span>↩️ 30-Day Returns</span>
+      <span>🌍 Ships Worldwide</span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product page",
+  "tag": "section"
+}
+{% endschema %}

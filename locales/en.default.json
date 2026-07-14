@@ -1,0 +1,18 @@
+{
+  "general": {
+    "meta": {
+      "page": "Page {{ page }}",
+      "tags": "Tagged \"{{ tags }}\""
+    },
+    "404": {
+      "title": "Page not found"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "general": {
+        "page_title": "Checkout"
+      }
+    }
+  }
+}

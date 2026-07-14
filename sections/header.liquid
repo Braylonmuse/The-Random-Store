@@ -1,0 +1,77 @@
+{%- if section.settings.show_marquee -%}
+  <div class="marquee-bar">
+    <span class="marquee-inner">
+      {%- assign items = section.settings.marquee_text | split: '|' -%}
+      {%- for i in (1..2) -%}
+        {%- for item in items -%}
+          {{ item | strip }} <span>•</span>
+        {%- endfor -%}
+      {%- endfor -%}
+    </span>
+  </div>
+{%- endif -%}
+
+<nav class="site-nav">
+  <a href="{{ routes.root_url }}" class="logo">
+    {%- if section.settings.logo_html != blank -%}
+      {{ section.settings.logo_html }}
+    {%- else -%}
+      {{ shop.name }}
+    {%- endif -%}
+  </a>
+  <ul class="nav-links">
+    {%- for link in section.settings.menu.links -%}
+      <li>
+        <a href="{{ link.url }}" {% if link.current %}class="active"{% endif %}>{{ link.title }}</a>
+      </li>
+    {%- endfor -%}
+  </ul>
+  <div class="nav-right">
+    <a class="nav-cart" href="{{ routes.cart_url }}">
+      🛒 Cart <span class="cart-count">{{ cart.item_count }}</span>
+    </a>
+    <button class="hamburger" id="Hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="MobileMenu">
+  {%- for link in section.settings.menu.links -%}
+    <a href="{{ link.url }}">{{ link.title }}</a>
+  {%- endfor -%}
+  <a href="{{ routes.cart_url }}">Cart ({{ cart.item_count }})</a>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "logo_html",
+      "label": "Logo text",
+      "info": "Italic text is shown in the accent color.",
+      "default": "THE <em>RANDOM</em> STORE"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_marquee",
+      "label": "Show scrolling announcement bar",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "marquee_text",
+      "label": "Announcement messages (separate with |)",
+      "default": "🔥 NEW MEME DROP EVERY FRIDAY | FREE SHIPPING OVER $50 | CHRONICALLY ONLINE. DRESSED TO PROVE IT. | LIMITED RUNS — ONCE IT'S GONE IT'S GONE | 😭 ALL MEMES USED IRONICALLY"
+    }
+  ]
+}
+{% endschema %}

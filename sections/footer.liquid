@@ -1,0 +1,72 @@
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="{{ routes.root_url }}">{{ shop.name }}</a>
+      <p>{{ section.settings.blurb }}</p>
+    </div>
+    {%- for block in section.blocks -%}
+      <div class="footer-col" {{ block.shopify_attributes }}>
+        <h4>{{ block.settings.heading }}</h4>
+        {%- for link in block.settings.menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+  <div class="footer-bottom">
+    <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved. All memes used ironically.</p>
+    <div class="footer-socials">
+      {%- if settings.social_instagram != blank -%}
+        <a class="fsoc" href="{{ settings.social_instagram }}" aria-label="Instagram">📸</a>
+      {%- endif -%}
+      {%- if settings.social_tiktok != blank -%}
+        <a class="fsoc" href="{{ settings.social_tiktok }}" aria-label="TikTok">🎵</a>
+      {%- endif -%}
+      {%- if settings.social_twitter != blank -%}
+        <a class="fsoc" href="{{ settings.social_twitter }}" aria-label="Twitter / X">🐦</a>
+      {%- endif -%}
+      {%- if settings.social_youtube != blank -%}
+        <a class="fsoc" href="{{ settings.social_youtube }}" aria-label="YouTube">▶️</a>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "blurb",
+      "label": "Brand blurb",
+      "default": "Meme clothing for the chronically online. Limited drops, original graphics, worldwide shipping. All memes used ironically."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_column",
+      "name": "Link column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}

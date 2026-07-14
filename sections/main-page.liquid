@@ -1,0 +1,15 @@
+<div class="page-banner" style="background: var(--c2);">
+  <h1>{{ page.title }}</h1>
+</div>
+<section class="shop-section">
+  <div class="rte">
+    {{ page.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section"
+}
+{% endschema %}

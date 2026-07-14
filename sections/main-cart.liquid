@@ -1,0 +1,96 @@
+<div class="cart-page">
+  <h1>Your Cart 🛒</h1>
+
+  {%- if cart.item_count == 0 -%}
+    <div class="cart-empty">
+      <div class="empty-icon">🛍️</div>
+      <p>Your cart is empty.<br>Add some memes.</p>
+      <a class="btn-dark" href="{{ routes.all_products_collection_url }}">Shop The Drop 🔥</a>
+    </div>
+  {%- else -%}
+    {%- assign free_ship_cents = section.settings.free_shipping_threshold | times: 100 -%}
+    {%- if section.settings.show_shipping_bar and free_ship_cents > 0 -%}
+      {%- assign remaining = free_ship_cents | minus: cart.total_price -%}
+      {%- assign pct = cart.total_price | times: 100 | divided_by: free_ship_cents | at_most: 100 -%}
+      <div class="ship-progress-wrap">
+        <div class="ship-progress-label">
+          {%- if remaining > 0 -%}
+            🚚 Add {{ remaining | money }} more for FREE shipping!
+          {%- else -%}
+            🎉 You unlocked FREE shipping!
+          {%- endif -%}
+        </div>
+        <div class="ship-progress-track"><div class="ship-progress-fill" style="width: {{ pct }}%;"></div></div>
+      </div>
+    {%- endif -%}
+
+    <form action="{{ routes.cart_url }}" method="post">
+      <div class="cart-table">
+        {%- for item in cart.items -%}
+          <div class="cart-line">
+            {%- if item.image -%}
+              {{ item.image | image_url: width: 140 | image_tag: class: 'cl-thumb', loading: 'lazy', alt: item.title }}
+            {%- else -%}
+              <div class="cl-thumb">👕</div>
+            {%- endif -%}
+            <div class="cl-info">
+              <a class="cl-name" href="{{ item.url }}">{{ item.product.title }}</a>
+              {%- unless item.product.has_only_default_variant -%}
+                <div class="cl-sub">{{ item.variant.title }}</div>
+              {%- endunless -%}
+              <a class="cl-remove" href="{{ item.url_to_remove }}">Remove</a>
+            </div>
+            <div>
+              <label class="visually-hidden" for="Qty-{{ item.index | plus: 1 }}">Quantity</label>
+              <input
+                class="qty-input"
+                id="Qty-{{ item.index | plus: 1 }}"
+                type="number"
+                name="updates[]"
+                value="{{ item.quantity }}"
+                min="0"
+              >
+            </div>
+            <div class="cl-price">{{ item.final_line_price | money }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-totals">
+          <div class="dt-row"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
+          <div class="dt-row"><span>Shipping</span><span>Calculated at checkout</span></div>
+          <div class="dt-row total"><span>Total</span><span>{{ cart.total_price | money }}</span></div>
+          <button type="submit" class="fbtn" name="update">Update Cart</button>
+          <button type="submit" class="checkout-btn" name="checkout">Checkout Securely 🔒</button>
+          <div class="trust-badges" style="justify-content:center;">
+            <span>🔒 Secure Checkout</span>
+            <span>↩️ 30-Day Returns</span>
+            <span>🌍 Ships Worldwide</span>
+          </div>
+        </div>
+      </div>
+    </form>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Cart page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_shipping_bar",
+      "label": "Show free shipping progress bar",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "Free shipping threshold",
+      "default": 50
+    }
+  ]
+}
+{% endschema %}
