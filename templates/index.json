@@ -50,6 +50,7 @@
         "btn1_link": "",
         "btn2_label": "See Bestsellers",
         "btn2_link": "",
+        "bg_style": "image",
         "show_emoji_bg": true,
         "emoji_row": "💀 🔥 😭 🐸 🗿 🤡 👁️ 📉 🧠 💸 😼 ✨",
         "bg_text": "LOL",
@@ -63,7 +64,7 @@
       "type": "featured-collection",
       "settings": {
         "heading": "New Drops",
-        "collection": "",
+        "collection": "new-drops",
         "limit": 8,
         "show_view_all": true
       }
