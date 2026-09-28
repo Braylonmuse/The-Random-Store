@@ -4,11 +4,11 @@
 {% endcomment %}
 
 {% style %}
-  .meme-hero { background: var(--dark); border-bottom: 4px solid var(--dark); min-height: {{ section.settings.min_height }}vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 0 40px; position: relative; overflow: hidden; }
+  .meme-hero { background: var(--light); border-bottom: 4px solid var(--dark); min-height: {{ section.settings.min_height }}vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 0 40px; position: relative; overflow: hidden; }
   .meme-hero .meme-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: space-around; background: var(--c2); }
   .meme-hero .meme-bg-image { position: absolute; inset: 0; z-index: 0; background: var(--c2); }
   .meme-hero .meme-bg-image img { width: 100%; height: 100%; object-fit: cover; }
-  .meme-hero .meme-row { white-space: nowrap; font-size: 64px; line-height: 1.4; opacity: 0.5; letter-spacing: 24px; will-change: transform; }
+  .meme-hero .meme-row { white-space: nowrap; font-size: 64px; line-height: 1.4; opacity: 0.12; letter-spacing: 24px; will-change: transform; }
   .meme-hero .meme-row-1 { animation: mh-scroll-left 38s linear infinite; }
   .meme-hero .meme-row-2 { animation: mh-scroll-right 44s linear infinite; }
   .meme-hero .meme-row-3 { animation: mh-scroll-left 32s linear infinite; }
@@ -16,18 +16,19 @@
   .meme-hero .meme-row-5 { animation: mh-scroll-left 42s linear infinite; }
   @keyframes mh-scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes mh-scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-  .meme-hero .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,221,0,0.55) 0%, rgba(255,59,63,0.12) 55%, rgba(0,0,0,0.35) 100%); z-index: 1; pointer-events: none; }
-  .meme-hero .hero-bg-text { position: absolute; font-family: 'Boogaloo', cursive; font-size: 320px; color: rgba(255,255,255,0.06); right: -40px; top: 50%; transform: translateY(-50%); pointer-events: none; line-height: 1; white-space: nowrap; z-index: 1; }
+  .meme-hero .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.55) 60%, rgba(255,255,255,0.2) 100%); z-index: 1; pointer-events: none; }
+  .meme-hero .hero-bg-text { position: absolute; font-family: 'Boogaloo', cursive; font-size: 320px; color: rgba(0,0,0,0.04); right: -40px; top: 50%; transform: translateY(-50%); pointer-events: none; line-height: 1; white-space: nowrap; z-index: 1; }
   .meme-hero .hero-text { position: relative; z-index: 3; padding: 60px 0; }
   .meme-hero .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--c1); color: #fff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border: 2px solid var(--dark); margin-bottom: 20px; font-family: 'Space Mono', monospace; animation: fadeUp 0.6s ease both; }
-  .meme-hero h1 { font-family: 'Boogaloo', cursive; font-size: 96px; line-height: 0.92; color: #fff; margin-bottom: 24px; animation: fadeUp 0.7s ease 0.1s both; text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
-  .meme-hero h1 em { color: var(--c2); font-style: normal; display: block; text-shadow: 3px 3px 0 rgba(0,0,0,0.2); }
-  .meme-hero .hero-sub { font-size: 13px; color: #fff; line-height: 1.7; max-width: 400px; margin-bottom: 32px; animation: fadeUp 0.7s ease 0.2s both; font-weight: 700; text-shadow: 1px 1px 4px rgba(0,0,0,0.6); }
+  .meme-hero h1 { font-family: 'Boogaloo', cursive; font-size: 96px; line-height: 0.92; color: var(--dark); margin-bottom: 24px; animation: fadeUp 0.7s ease 0.1s both; }
+  .meme-hero h1 em { color: var(--c1); font-style: normal; display: block; }
+  .meme-hero .hero-sub { font-size: 13px; color: #333; line-height: 1.7; max-width: 400px; margin-bottom: 32px; animation: fadeUp 0.7s ease 0.2s both; font-weight: 700; }
   .meme-hero .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.3s both; }
-  .meme-hero .hero-risk { margin-top: 14px; font-size: 11px; color: #fff; font-weight: 700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); animation: fadeUp 0.7s ease 0.35s both; }
+  .meme-hero .hero-risk { margin-top: 14px; font-size: 11px; color: #333; font-weight: 700; animation: fadeUp 0.7s ease 0.35s both; }
   .meme-hero .hero-stats { display: flex; gap: 28px; margin-top: 40px; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.4s both; }
-  .meme-hero .hero-stat-num { font-family: 'Boogaloo', cursive; font-size: 32px; color: var(--c2); display: block; text-shadow: 2px 2px 0 rgba(0,0,0,0.3); }
-  .meme-hero .hero-stat-lbl { font-size: 10px; color: #fff; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+  .meme-hero .hero-stat-num { font-family: 'Boogaloo', cursive; font-size: 32px; color: var(--c1); display: block; }
+  .meme-hero .hero-stat-lbl { font-size: 10px; color: #555; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
+  .meme-hero .btn-outline { background: #fff; color: var(--dark); border-color: var(--dark); backdrop-filter: none; }
   .meme-hero .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; z-index: 3; animation: fadeUp 0.8s ease 0.2s both; }
   .meme-hero .cat-meme-wrap { display: flex; flex-direction: column; align-items: center; position: relative; }
   .meme-hero .cat-svg { width: 280px; height: 300px; filter: drop-shadow(4px 6px 0px rgba(0,0,0,0.5)); animation: mh-cat-float 3s ease-in-out infinite; }
@@ -263,7 +264,7 @@
       "type": "image_picker",
       "id": "bg_image",
       "label": "Background image",
-      "info": "Used when background style is set to Image. If no image is picked, the built-in yellow emoji graffiti artwork is used."
+      "info": "Used when background style is set to Image. If no image is picked, the built-in emoji graffiti artwork is used."
     },
     {
       "type": "checkbox",
