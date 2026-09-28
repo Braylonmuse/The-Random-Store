@@ -1,5 +1,5 @@
 <div class="page-banner">
-  <h1>{{ collection.title }}</h1>
+  <h1>{%- if current_tags -%}{{ current_tags.first | replace: '-', ' ' | capitalize }}{%- else -%}{{ collection.title }}{%- endif -%}</h1>
   {%- if collection.description != blank -%}
     <p>{{ collection.description | strip_html }}</p>
   {%- endif -%}
@@ -8,7 +8,7 @@
 <section class="shop-section">
   <div class="shop-header">
     <h2>{{ section.settings.heading | default: 'All Products' }}</h2>
-    <span class="shop-count">{{ collection.products_count }} ITEMS</span>
+    <span class="shop-count">{{ collection.products_count }} items</span>
   </div>
 
   {%- paginate collection.products by section.settings.per_page -%}
@@ -39,8 +39,9 @@
       {%- endif -%}
     {%- else -%}
       <div class="cart-empty">
-        <div class="empty-icon">🫥</div>
-        <p>Nothing here yet.<br>The memes are coming.</p>
+        <div class="empty-icon">🔎</div>
+        <p>Nothing here yet.<br>Check back soon or search for something else.</p>
+        <a class="btn-dark" href="{{ routes.all_products_collection_url }}">Browse everything</a>
       </div>
     {%- endif -%}
   {%- endpaginate -%}

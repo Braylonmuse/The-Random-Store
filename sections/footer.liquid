@@ -1,7 +1,8 @@
 <footer class="site-footer">
+  <div class="page-width">
   <div class="footer-grid">
     <div class="footer-brand">
-      <a class="logo" href="{{ routes.root_url }}">{{ shop.name }}</a>
+      <a class="logo" href="{{ routes.root_url }}"><span class="logo-the">the</span><span class="logo-word">random</span><span class="logo-store">store</span></a>
       <p>{{ section.settings.blurb }}</p>
     </div>
     {%- for block in section.blocks -%}
@@ -14,7 +15,7 @@
     {%- endfor -%}
   </div>
   <div class="footer-bottom">
-    <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved. All memes used ironically.</p>
+    <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
     <div class="footer-socials">
       {%- if settings.social_instagram != blank -%}
         <a class="fsoc" href="{{ settings.social_instagram }}" aria-label="Instagram">📸</a>
@@ -30,6 +31,7 @@
       {%- endif -%}
     </div>
   </div>
+  </div>
 </footer>
 
 {% schema %}
@@ -40,7 +42,7 @@
       "type": "textarea",
       "id": "blurb",
       "label": "Brand blurb",
-      "default": "Meme clothing for the chronically online. Limited drops, original graphics, worldwide shipping. All memes used ironically."
+      "default": "Random finds for your home, pets, ride, and style. Browse something new, check out securely, and get it shipped to your door."
     }
   ],
   "blocks": [

@@ -1,5 +1,6 @@
 {%- assign col = collections[section.settings.collection] -%}
 <section class="best-strip" id="best">
+  <div class="page-width">
   <h2>{{ section.settings.heading }}</h2>
   <div class="best-items">
     {%- if col != blank -%}
@@ -20,6 +21,7 @@
       <div class="best-item"><span class="bi-emoji">🏆</span><div><div class="bi-name">Pick a collection</div><div class="bi-price">in the theme editor</div></div></div>
     {%- endif -%}
   </div>
+  </div>
 </section>
 
 {% schema %}
@@ -31,7 +33,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Bestsellers 🏆"
+      "default": "Popular right now"
     },
     {
       "type": "collection",

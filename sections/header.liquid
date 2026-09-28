@@ -1,76 +1,81 @@
-{%- if section.settings.show_marquee -%}
-  <div class="marquee-bar">
-    <span class="marquee-inner">
-      {%- assign items = section.settings.marquee_text | split: '|' -%}
-      {%- for i in (1..2) -%}
-        {%- for item in items -%}
-          {{ item | strip }} <span>•</span>
-        {%- endfor -%}
+{%- if section.settings.show_announcement and section.settings.announcement != blank -%}
+  <div class="topbar">
+    <div class="page-width">
+      {%- assign items = section.settings.announcement | split: '|' -%}
+      {%- for item in items -%}
+        <span{% unless forloop.first %} class="hide-sm"{% endunless %}>{{ item | strip }}</span>
       {%- endfor -%}
-    </span>
+    </div>
   </div>
 {%- endif -%}
 
-<nav class="site-nav">
-  <a href="{{ routes.root_url }}" class="logo">
-    {%- if section.settings.logo_html != blank -%}
-      {{ section.settings.logo_html }}
-    {%- else -%}
-      {{ shop.name }}
-    {%- endif -%}
-  </a>
-  <ul class="nav-links">
-    {%- for link in section.settings.menu.links -%}
-      <li>
-        <a href="{{ link.url }}" {% if link.current %}class="active"{% endif %}>{{ link.title }}</a>
-      </li>
-    {%- endfor -%}
-  </ul>
-  <div class="nav-right">
-    <a class="nav-cart" href="{{ routes.cart_url }}">
-      🛒 Cart <span class="cart-count">{{ cart.item_count }}</span>
+<header class="site-header">
+  <div class="page-width header-main">
+    <a href="{{ routes.root_url }}" class="logo" aria-label="{{ shop.name }} home">
+      <span class="logo-the">the</span><span class="logo-word">random</span><span class="logo-store">store</span>
     </a>
-    <button class="hamburger" id="Hamburger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
 
-<div class="mobile-menu" id="MobileMenu">
-  {%- for link in section.settings.menu.links -%}
-    <a href="{{ link.url }}">{{ link.title }}</a>
-  {%- endfor -%}
-  <a href="{{ routes.cart_url }}">Cart ({{ cart.item_count }})</a>
-</div>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+      <label class="visually-hidden" for="HeaderSearch">Search</label>
+      <input id="HeaderSearch" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ section.settings.search_placeholder | escape }}" autocomplete="off">
+      <input type="hidden" name="type" value="product">
+      <button type="submit">Search</button>
+    </form>
+
+    <div class="header-actions">
+      {%- if shop.customer_accounts_enabled -%}
+        <a class="icon-link" href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span class="label">{% if customer %}Account{% else %}Sign in{% endif %}</span>
+        </a>
+      {%- endif -%}
+      <a class="icon-link nav-cart" href="{{ routes.cart_url }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.7 12.4a2 2 0 0 0 2 1.6h8.6a2 2 0 0 0 2-1.5L22 7H6"/></svg>
+        {%- if cart.item_count > 0 -%}<span class="cart-count">{{ cart.item_count }}</span>{%- endif -%}
+        <span class="label">Cart</span>
+      </a>
+    </div>
+  </div>
+
+  {%- if section.settings.menu.links.size > 0 -%}
+    <nav class="cat-nav" aria-label="Categories">
+      <ul class="page-width">
+        {%- for link in section.settings.menu.links -%}
+          <li><a href="{{ link.url }}" {% if link.current %}class="active"{% endif %}>{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  {%- endif -%}
+</header>
 
 {% schema %}
 {
   "name": "Header",
   "settings": [
     {
-      "type": "inline_richtext",
-      "id": "logo_html",
-      "label": "Logo text",
-      "info": "Italic text is shown in the accent color.",
-      "default": "THE <em>RANDOM</em> STORE"
-    },
-    {
       "type": "link_list",
       "id": "menu",
-      "label": "Navigation menu",
+      "label": "Category menu",
       "default": "main-menu"
     },
     {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search for anything"
+    },
+    {
       "type": "checkbox",
-      "id": "show_marquee",
-      "label": "Show scrolling announcement bar",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
       "default": true
     },
     {
-      "type": "textarea",
-      "id": "marquee_text",
+      "type": "text",
+      "id": "announcement",
       "label": "Announcement messages (separate with |)",
-      "default": "🔥 NEW MEME DROP EVERY FRIDAY | FREE SHIPPING OVER $50 | CHRONICALLY ONLINE. DRESSED TO PROVE IT. | LIMITED RUNS — ONCE IT'S GONE IT'S GONE | 😭 ALL MEMES USED IRONICALLY"
+      "info": "Only the first message shows on phones.",
+      "default": "🚚 Free standard US shipping on orders $70+ | 🔒 Secure checkout | 🛍️ Pets, home, travel, style & more"
     }
   ]
 }

@@ -10,121 +10,120 @@
 {
   "sections": {
     "hero": {
-      "type": "meme-hero",
+      "type": "market-hero",
+      "settings": {
+        "eyebrow": "Fresh random finds",
+        "heading": "Find something you didn't know you",
+        "heading_highlight": "needed.",
+        "subtext": "Cool stuff for your home, pets, ride, and style — all in one place. Search it, find it, get it shipped.",
+        "btn1_label": "Shop all finds",
+        "btn1_link": "",
+        "btn2_label": "See what's trending",
+        "btn2_link": "",
+        "perks": "🚚 Free US shipping $70+ | 🔒 Secure checkout",
+        "collection": "random-finds",
+        "sticker": "New finds 🔥"
+      }
+    },
+    "categories": {
+      "type": "category-tiles",
       "blocks": {
-        "stat-1": {
-          "type": "stat",
+        "cat-1": {
+          "type": "category",
           "settings": {
-            "number": "500+",
-            "label": "Orders Shipped"
+            "label": "Pets",
+            "emoji": "🐾",
+            "link": "/collections/all/pets",
+            "color": "#FFF1E6"
           }
         },
-        "stat-2": {
-          "type": "stat",
+        "cat-2": {
+          "type": "category",
           "settings": {
-            "number": "24",
-            "label": "Active Designs"
+            "label": "Home Decor",
+            "emoji": "🛋️",
+            "link": "/collections/all/home-decor",
+            "color": "#EEF4FF"
           }
         },
-        "stat-3": {
-          "type": "stat",
+        "cat-3": {
+          "type": "category",
           "settings": {
-            "number": "4.9★",
-            "label": "Avg Rating"
+            "label": "Travel",
+            "emoji": "✈️",
+            "link": "/collections/all/travel",
+            "color": "#E8F8F5"
+          }
+        },
+        "cat-4": {
+          "type": "category",
+          "settings": {
+            "label": "Beauty",
+            "emoji": "💅",
+            "link": "/collections/all/beauty",
+            "color": "#FDEBF3"
+          }
+        },
+        "cat-5": {
+          "type": "category",
+          "settings": {
+            "label": "Car",
+            "emoji": "🚗",
+            "link": "/collections/all/car",
+            "color": "#F1EDFF"
+          }
+        },
+        "cat-6": {
+          "type": "category",
+          "settings": {
+            "label": "Shoe Care",
+            "emoji": "👟",
+            "link": "/collections/all/shoe-care",
+            "color": "#EAF6FF"
+          }
+        },
+        "cat-7": {
+          "type": "category",
+          "settings": {
+            "label": "Gift Ideas",
+            "emoji": "🎁",
+            "link": "/collections/all/gift",
+            "color": "#FFF6D6"
+          }
+        },
+        "cat-8": {
+          "type": "category",
+          "settings": {
+            "label": "Shop All",
+            "emoji": "🛍️",
+            "link": "/collections/all",
+            "color": "#EDFBEF"
           }
         }
       },
       "block_order": [
-        "stat-1",
-        "stat-2",
-        "stat-3"
+        "cat-1",
+        "cat-2",
+        "cat-3",
+        "cat-4",
+        "cat-5",
+        "cat-6",
+        "cat-7",
+        "cat-8"
       ],
       "settings": {
-        "eyebrow": "🔥 Meme Clothing — Limited Drops",
-        "heading_top": "Wear the",
-        "heading_highlight": "Internet.",
-        "heading_bottom": "Touch Grass\nLater.",
-        "subtext": "Tees, hoodies & hats for the chronically online. Ironic fits, absurd humor, streetwear energy — all the vibes, none of the context.",
-        "risk_text": "✅ Free shipping over $50 · ↩️ 30-day easy returns",
-        "btn1_label": "Shop The Drop — Before It's Gone 🔥",
-        "btn1_link": "",
-        "btn2_label": "See Bestsellers",
-        "btn2_link": "",
-        "bg_style": "emoji",
-        "show_emoji_bg": true,
-        "emoji_row": "💀 🔥 😭 🐸 🗿 🤡 👁️ 📉 🧠 💸 😼 ✨",
-        "bg_text": "LOL",
-        "min_height": 92,
-        "show_cat": false,
-        "bubble_text": "HE'S WATCHING\nYOUR CART 👁️",
-        "caption_text": "when you see the price\nbut still cop it 💸"
+        "heading": "Shop by category",
+        "link_label": "See everything →",
+        "link": "shopify://collections/random-finds"
       }
     },
-    "new-drops": {
+    "trending": {
       "type": "featured-collection",
       "settings": {
-        "heading": "New Drops",
-        "collection": "new-drops",
-        "limit": 8,
+        "heading": "Trending finds 🔥",
+        "collection": "random-finds",
+        "limit": 12,
         "show_view_all": true
-      }
-    },
-    "countdown": {
-      "type": "countdown-bar",
-      "settings": {
-        "label": "⏰ NEXT DROP SELLS OUT IN:",
-        "end_time": "",
-        "cta_label": "Cop Now →",
-        "cta_link": ""
-      }
-    },
-    "bestsellers": {
-      "type": "bestsellers-strip",
-      "settings": {
-        "heading": "Bestsellers 🏆",
-        "collection": "",
-        "limit": 5
-      }
-    },
-    "reviews": {
-      "type": "reviews",
-      "blocks": {
-        "review-1": {
-          "type": "review",
-          "settings": {
-            "stars": 5,
-            "quote": "Wore the I'm Fine tee to Thanksgiving. My aunt didn't get it. 10/10 exactly as intended.",
-            "author": "Jordan T.",
-            "verified": true
-          }
-        },
-        "review-2": {
-          "type": "review",
-          "settings": {
-            "stars": 5,
-            "quote": "The hoodie is actually HEAVY heavy. Quality slaps. Got 3 compliments and 1 confused look — perfect ratio.",
-            "author": "Maya R.",
-            "verified": true
-          }
-        },
-        "review-3": {
-          "type": "review",
-          "settings": {
-            "stars": 5,
-            "quote": "Ordered Tuesday, wearing it Saturday. The Moai cap goes with literally everything because it expresses nothing.",
-            "author": "Dex L.",
-            "verified": true
-          }
-        }
-      },
-      "block_order": [
-        "review-1",
-        "review-2",
-        "review-3"
-      ],
-      "settings": {
-        "heading": "The People Have Spoken 🗣️",
-        "score_text": "4.9/5 from 200+ reviews"
       }
     },
     "why": {
@@ -133,25 +132,25 @@
         "card-1": {
           "type": "card",
           "settings": {
-            "icon": "🎨",
-            "title": "Original Graphics",
-            "text": "Every design is original. No bootleg screenshots — just our own weird takes on internet culture, screen-printed on quality blanks."
+            "icon": "🚚",
+            "title": "Free US shipping at $70",
+            "text": "Standard shipping is free on US orders of $70 or more."
           }
         },
         "card-2": {
           "type": "card",
           "settings": {
-            "icon": "📦",
-            "title": "Limited Runs Only",
-            "text": "Each drop is capped. When it's gone, it's gone for good. No restocks, no reprints. Own a piece of the timeline."
+            "icon": "🔒",
+            "title": "Secure checkout",
+            "text": "Pay safely through Shopify's encrypted checkout with the payment methods you already use."
           }
         },
         "card-3": {
           "type": "card",
           "settings": {
-            "icon": "🌍",
-            "title": "Ships Worldwide",
-            "text": "Memes are global. Your fit ships in 5–10 business days anywhere on Earth. Free shipping on orders over $50."
+            "icon": "💬",
+            "title": "Real people on support",
+            "text": "Questions about an order? Message us from the contact page and a real person gets back to you."
           }
         }
       },
@@ -161,24 +160,22 @@
         "card-3"
       ],
       "settings": {
-        "heading": "Why Shop Here"
+        "heading": "Shop with confidence"
       }
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "heading": "Don't Miss\nThe Drop.",
-        "text": "New meme fits drop every Friday. Get first access, exclusive discount codes, and updates straight to your inbox. No spam, only drip.",
-        "button_label": "Subscribe for Early Access 🔥"
+        "heading": "Get first dibs on new finds",
+        "text": "Join the list for new arrivals and occasional deals. No spam — unsubscribe anytime.",
+        "button_label": "Sign me up"
       }
     }
   },
   "order": [
     "hero",
-    "new-drops",
-    "countdown",
-    "bestsellers",
-    "reviews",
+    "categories",
+    "trending",
     "why",
     "newsletter"
   ]

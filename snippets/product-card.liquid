@@ -1,5 +1,5 @@
 {% comment %}
-  Renders one product card in the meme style.
+  Renders one marketplace product card.
   Usage: {% render 'product-card', product: product %}
 {% endcomment %}
 <div class="pcard">
@@ -10,21 +10,21 @@
       {%- elsif product.compare_at_price > product.price -%}
         <div class="pbadge">SALE</div>
       {%- elsif product.tags contains 'new' or product.tags contains 'NEW' -%}
-        <div class="pbadge">NEW</div>
+        <div class="pbadge new">NEW</div>
       {%- elsif product.tags contains 'hot' or product.tags contains 'HOT' -%}
-        <div class="pbadge">HOT</div>
+        <div class="pbadge hot">HOT</div>
       {%- endif -%}
       {%- if product.featured_image -%}
         {{ product.featured_image | image_url: width: 480 | image_tag: loading: 'lazy', alt: product.featured_image.alt | default: product.title }}
       {%- else -%}
-        <span class="placeholder-emoji">👕</span>
+        <span class="placeholder-emoji">🛍️</span>
       {%- endif -%}
     </div>
   </a>
   <div class="pinfo">
     <a href="{{ product.url }}" class="pname">{{ product.title }}</a>
     <div class="psub">
-      {{ product.type | default: 'MEME FIT' }}
+      {{ product.type | default: product.vendor }}
     </div>
     <div class="pbottom">
       <span class="pprice">
@@ -34,7 +34,7 @@
         {{ product.price | money }}
       </span>
       <a class="padd" href="{{ product.url }}">
-        {%- if product.available %}+ Add{% else %}Gone 💀{% endif -%}
+        {%- if product.available %}View{% else %}Sold out{% endif -%}
       </a>
     </div>
   </div>

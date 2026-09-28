@@ -8,15 +8,7 @@
           "settings": {
             "icon": "✉️",
             "label": "Email",
-            "value": "hey@therandomstore.com"
-          }
-        },
-        "method-2": {
-          "type": "method",
-          "settings": {
-            "icon": "📸",
-            "label": "Instagram",
-            "value": "@therandomstore"
+            "value": "musebraylon1@gmail.com"
           }
         },
         "method-3": {
@@ -24,13 +16,18 @@
           "settings": {
             "icon": "📍",
             "label": "Based in",
-            "value": "Louisiana, USA · Ships worldwide"
+            "value": "Louisiana, USA"
           }
         }
       },
-      "block_order": ["method-1", "method-2", "method-3"],
+      "block_order": [
+        "method-1",
+        "method-3"
+      ],
       "settings": {}
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

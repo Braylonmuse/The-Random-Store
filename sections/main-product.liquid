@@ -4,7 +4,7 @@
       {%- if product.featured_image -%}
         {{ product.featured_image | image_url: width: 1000 | image_tag: alt: product.featured_image.alt | default: product.title }}
       {%- else -%}
-        <span class="placeholder-emoji">👕</span>
+        <span class="placeholder-emoji">🛍️</span>
       {%- endif -%}
     </div>
     {%- if product.images.size > 1 -%}
@@ -55,14 +55,14 @@
       </div>
 
       <button type="submit" class="add-to-cart-btn" {% unless product.available %}disabled{% endunless %}>
-        {%- if product.available %}Add to Cart 🔥{% else %}Sold Out 💀{% endif -%}
+        {%- if product.available %}Add to cart{% else %}Sold out{% endif -%}
       </button>
     {% endform %}
 
     <div class="trust-badges">
-      <span>🔒 Secure Checkout</span>
-      <span>↩️ 30-Day Returns</span>
-      <span>🌍 Ships Worldwide</span>
+      <span>🚚 Free US shipping $70+</span>
+      <span>🔒 Secure checkout</span>
+      <span>💬 Real support</span>
     </div>
   </div>
 </div>

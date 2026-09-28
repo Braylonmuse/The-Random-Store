@@ -13,38 +13,38 @@
       {
         "type": "color",
         "id": "color_accent_1",
-        "label": "Accent 1 (red)",
-        "default": "#FF3B3F"
+        "label": "Accent — red (badges, sale)",
+        "default": "#E53238"
       },
       {
         "type": "color",
         "id": "color_accent_2",
-        "label": "Accent 2 (highlight)",
+        "label": "Highlight (white)",
         "default": "#FFFFFF"
       },
       {
         "type": "color",
         "id": "color_accent_3",
-        "label": "Accent 3 (blue)",
-        "default": "#00C2FF"
+        "label": "Primary — blue (buttons, links)",
+        "default": "#0064D2"
       },
       {
         "type": "color",
         "id": "color_accent_4",
-        "label": "Accent 4 (pink)",
-        "default": "#FF6BFF"
+        "label": "Accent — purple (hero gradient)",
+        "default": "#7B2FF7"
       },
       {
         "type": "color",
         "id": "color_accent_5",
-        "label": "Accent 5 (green)",
-        "default": "#00E68A"
+        "label": "Accent — green",
+        "default": "#12B76A"
       },
       {
         "type": "color",
         "id": "color_dark",
-        "label": "Dark / ink",
-        "default": "#111111"
+        "label": "Text / ink",
+        "default": "#101828"
       },
       {
         "type": "color",

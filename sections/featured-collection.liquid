@@ -3,7 +3,7 @@
   <div class="shop-header">
     <h2>{{ section.settings.heading }}</h2>
     {%- if col != blank -%}
-      <span class="shop-count">{{ col.products_count }} ITEMS</span>
+      <a class="shop-count" href="{{ col.url }}">{{ col.products_count }} items →</a>
     {%- endif -%}
   </div>
   <div class="products">
@@ -14,7 +14,7 @@
     {%- else -%}
       {%- for i in (1..4) -%}
         <div class="pcard">
-          <div class="pthumb"><span class="placeholder-emoji">👕</span></div>
+          <div class="pthumb"><span class="placeholder-emoji">🛍️</span></div>
           <div class="pinfo">
             <span class="pname">Example product</span>
             <div class="psub">Pick a collection in the theme editor</div>
@@ -24,8 +24,8 @@
     {%- endif -%}
   </div>
   {%- if section.settings.show_view_all and col != blank -%}
-    <div style="text-align:center;margin-top:32px;">
-      <a class="btn-dark" href="{{ col.url }}">View All →</a>
+    <div class="view-all-wrap">
+      <a class="btn-outline" href="{{ col.url }}">View all</a>
     </div>
   {%- endif -%}
 </section>
@@ -39,7 +39,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "New Drops"
+      "default": "Trending finds"
     },
     {
       "type": "collection",

@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>{{ shop.name }} — Gift Card</title>
-  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
   {{ content_for_header }}
   <style>
-    body { font-family: 'Space Mono', monospace; background: #FFFDF5; color: #111; text-align: center; padding: 40px 20px; }
-    .gc-card { max-width: 420px; margin: 0 auto; border: 3px solid #111; border-radius: 16px; padding: 32px; box-shadow: 8px 8px 0 #111; background: #FFFFFF; }
-    h1 { font-family: 'Boogaloo', cursive; font-size: 34px; margin-bottom: 8px; }
-    .gc-amount { font-family: 'Boogaloo', cursive; font-size: 48px; margin: 14px 0; }
+    body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: #F5F7FA; color: #111; text-align: center; padding: 40px 20px; }
+    .gc-card { max-width: 420px; margin: 0 auto; border: 1px solid #E4E7EC; border-radius: 20px; padding: 32px; box-shadow: 0 18px 40px rgba(16,24,40,0.12); background: #FFFFFF; }
+    h1 { font-weight: 800; font-size: 28px; margin-bottom: 8px; }
+    .gc-amount { font-weight: 800; font-size: 44px; color: #0064D2; margin: 14px 0; }
     .gc-code { background: #fff; border: 2px dashed #111; border-radius: 8px; padding: 12px; font-size: 18px; letter-spacing: 2px; margin: 14px 0; }
     a { color: #111; }
   </style>
@@ -28,7 +28,7 @@
     {%- elsif gift_card.balance != gift_card.initial_value -%}
       <p>Remaining balance: {{ gift_card.balance | money }}</p>
     {%- endif -%}
-    <p><a href="{{ shop.url }}">Use it on some memes →</a></p>
+    <p><a href="{{ shop.url }}">Start shopping →</a></p>
   </div>
 </body>
 </html>

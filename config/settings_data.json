@@ -1,11 +1,11 @@
 {
   "current": {
-    "color_accent_1": "#FF3B3F",
+    "color_accent_1": "#E53238",
     "color_accent_2": "#FFFFFF",
-    "color_accent_3": "#00C2FF",
-    "color_accent_4": "#FF6BFF",
-    "color_accent_5": "#00E68A",
-    "color_dark": "#111111",
+    "color_accent_3": "#0064D2",
+    "color_accent_4": "#7B2FF7",
+    "color_accent_5": "#12B76A",
+    "color_dark": "#101828",
     "color_light": "#FFFFFF"
   }
 }
