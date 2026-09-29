@@ -34,7 +34,7 @@
             "label": "Pets",
             "emoji": "🐾",
             "link": "/collections/all/pets",
-            "color": "#FFF1E6"
+            "color": "#FFF3C4"
           }
         },
         "cat-2": {
@@ -43,7 +43,7 @@
             "label": "Home Decor",
             "emoji": "🛋️",
             "link": "/collections/all/home-decor",
-            "color": "#EEF4FF"
+            "color": "#F2F2F2"
           }
         },
         "cat-3": {
@@ -52,7 +52,7 @@
             "label": "Travel",
             "emoji": "✈️",
             "link": "/collections/all/travel",
-            "color": "#E8F8F5"
+            "color": "#FFF3C4"
           }
         },
         "cat-4": {
@@ -61,7 +61,7 @@
             "label": "Beauty",
             "emoji": "💅",
             "link": "/collections/all/beauty",
-            "color": "#FDEBF3"
+            "color": "#F2F2F2"
           }
         },
         "cat-5": {
@@ -70,7 +70,7 @@
             "label": "Car",
             "emoji": "🚗",
             "link": "/collections/all/car",
-            "color": "#F1EDFF"
+            "color": "#FFF3C4"
           }
         },
         "cat-6": {
@@ -79,7 +79,7 @@
             "label": "Shoe Care",
             "emoji": "👟",
             "link": "/collections/all/shoe-care",
-            "color": "#EAF6FF"
+            "color": "#F2F2F2"
           }
         },
         "cat-7": {
@@ -88,7 +88,7 @@
             "label": "Gift Ideas",
             "emoji": "🎁",
             "link": "/collections/all/gift",
-            "color": "#FFF6D6"
+            "color": "#FFF3C4"
           }
         },
         "cat-8": {
@@ -97,7 +97,7 @@
             "label": "Shop All",
             "emoji": "🛍️",
             "link": "/collections/all",
-            "color": "#EDFBEF"
+            "color": "#F2F2F2"
           }
         }
       },
