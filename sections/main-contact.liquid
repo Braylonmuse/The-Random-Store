@@ -1,6 +1,6 @@
 <div class="page-banner">
   <h1>{{ page.title | default: 'Get In Touch' }}</h1>
-  <p>Questions about an order or a product? Send us a message.</p>
+  <p>Questions about an order or a product? Send us a message or DM us.</p>
 </div>
 
 <section class="contact-section">
@@ -13,7 +13,7 @@
           <span class="cm-icon">{{ block.settings.icon }}</span>
           <div>
             <div class="cm-label">{{ block.settings.label }}</div>
-            <div class="cm-val">{{ block.settings.value }}</div>
+            <div class="cm-val">{%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" target="_blank" rel="noopener">{{ block.settings.value }}</a>{%- else -%}{{ block.settings.value }}{%- endif -%}</div>
           </div>
         </div>
       {%- endfor -%}
@@ -94,7 +94,12 @@
           "type": "text",
           "id": "value",
           "label": "Value",
-          "default": "musebraylon1@gmail.com"
+          "default": "@ustherandom"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
         }
       ]
     }

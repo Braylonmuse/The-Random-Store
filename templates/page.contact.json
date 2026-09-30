@@ -3,12 +3,22 @@
     "main": {
       "type": "main-contact",
       "blocks": {
-        "method-1": {
+        "method-ig": {
           "type": "method",
           "settings": {
-            "icon": "✉️",
-            "label": "Email",
-            "value": "musebraylon1@gmail.com"
+            "icon": "📸",
+            "label": "Instagram",
+            "value": "@ustherandom",
+            "link": "https://www.instagram.com/ustherandom"
+          }
+        },
+        "method-tt": {
+          "type": "method",
+          "settings": {
+            "icon": "🎵",
+            "label": "TikTok",
+            "value": "@ustherandom",
+            "link": "https://www.tiktok.com/@ustherandom"
           }
         },
         "method-3": {
@@ -21,7 +31,8 @@
         }
       },
       "block_order": [
-        "method-1",
+        "method-ig",
+        "method-tt",
         "method-3"
       ],
       "settings": {}
