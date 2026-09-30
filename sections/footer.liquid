@@ -16,6 +16,13 @@
   </div>
   <div class="footer-bottom">
     <p>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+    {%- if shop.policies.size > 0 -%}
+      <nav class="footer-policies" aria-label="Store policies">
+        {%- for policy in shop.policies -%}
+          <a href="{{ policy.url }}">{{ policy.title }}</a>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
     <div class="footer-socials">
       {%- if settings.social_instagram != blank -%}
         <a class="fsoc" href="{{ settings.social_instagram }}" aria-label="Instagram">📸</a>

@@ -308,6 +308,9 @@ a { color: inherit; }
 .footer-col a:hover { color: var(--gold); }
 .footer-bottom { border-top: 1px solid var(--line); padding-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 .footer-bottom p { font-size: 13px; color: var(--muted); }
+.footer-policies { display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: center; }
+.footer-policies a { font-size: 13px; color: var(--muted); text-decoration: none; }
+.footer-policies a:hover { color: var(--gold); text-decoration: underline; }
 .footer-socials { display: flex; gap: 10px; }
 .fsoc { width: 36px; height: 36px; border: 1px solid var(--line); background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: border-color 0.15s; text-decoration: none; }
 .fsoc:hover { border-color: var(--c3); }
