@@ -23,7 +23,7 @@
     </form>
 
     <div class="header-actions">
-      {%- if shop.customer_accounts_enabled -%}
+      {%- if section.settings.show_account and shop.customer_accounts_enabled -%}
         <a class="icon-link" href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           <span class="label">{% if customer %}Account{% else %}Sign in{% endif %}</span>
@@ -63,6 +63,13 @@
       "id": "search_placeholder",
       "label": "Search placeholder",
       "default": "Search for anything"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show Sign in / Account link",
+      "info": "Shoppers can always check out as guests.",
+      "default": false
     },
     {
       "type": "checkbox",
