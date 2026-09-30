@@ -270,6 +270,7 @@ a { color: inherit; }
 .cm-icon { font-size: 24px; width: 50px; height: 50px; background: var(--soft); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .cm-label { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .cm-val { font-size: 16px; font-weight: 700; color: var(--ink); }
+.cm-val a { color: inherit; text-decoration: underline; text-decoration-color: var(--c3); text-underline-offset: 3px; }
 .contact-form, .account-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 30px; box-shadow: var(--shadow-sm); }
 .contact-form h3, .account-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 18px; }
 .cf-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
