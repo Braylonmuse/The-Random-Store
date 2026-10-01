@@ -63,6 +63,17 @@
           <div class="dt-row total"><span>Total</span><span>{{ cart.total_price | money }}</span></div>
           <button type="submit" class="fbtn" name="update">Update Cart</button>
           <button type="submit" class="checkout-btn" name="checkout">Checkout securely 🔒</button>
+          {%- if additional_checkout_buttons -%}
+            <div class="express-checkout">
+              <div class="express-label"><span>or pay with</span></div>
+              {{ content_for_additional_checkout_buttons }}
+            </div>
+          {%- endif -%}
+          {%- if shop.enabled_payment_types.size > 0 -%}
+            <ul class="pay-icons" aria-label="Accepted payment methods">
+              {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag }}</li>{%- endfor -%}
+            </ul>
+          {%- endif -%}
           <div class="trust-badges" style="justify-content:center;">
             <span>🔒 Secure checkout</span>
             <span>💬 Real support</span>
