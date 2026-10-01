@@ -389,20 +389,29 @@ a { color: inherit; }
 }
 
 /* Cart: you may also like */
-.cart-upsell { margin-top: 40px; }
-.cart-upsell .section-head { display: block; margin-bottom: 16px; }
-.cart-upsell .section-head p { color: var(--muted); font-size: 14px; margin-top: 4px; }
-.upsell-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-.upsell-card { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; overflow: hidden; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
-.upsell-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-.upsell-thumb { display: block; aspect-ratio: 1; background: #F6F6F6; overflow: hidden; }
+/* Cart: "You may also like" beside the checkout box */
+.cart-footer.has-upsell { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 24px; align-items: start; justify-content: stretch; }
+.cart-footer.has-upsell .cart-totals { min-width: 0; position: sticky; top: 16px; }
+.cart-upsell { border: 2px solid var(--c3); border-radius: var(--radius); padding: 16px; background: #FFFBEB; }
+.cart-page > .cart-upsell { margin-top: 32px; }
+.upsell-head { margin-bottom: 12px; }
+.upsell-head h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.01em; }
+.upsell-head p { color: var(--muted); font-size: 13px; margin-top: 2px; }
+.upsell-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.upsell-card { border: 1px solid var(--line); border-radius: 12px; background: #fff; overflow: hidden; display: flex; flex-direction: row; transition: transform .2s, box-shadow .2s; }
+.upsell-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.upsell-thumb { display: block; flex: 0 0 96px; width: 96px; aspect-ratio: 1; background: #F6F6F6; overflow: hidden; }
 .upsell-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.upsell-thumb .ph { display: flex; align-items: center; justify-content: center; height: 100%; font-size: 40px; }
-.upsell-info { padding: 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-.upsell-title { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.upsell-thumb .ph { display: flex; align-items: center; justify-content: center; height: 100%; font-size: 32px; }
+.upsell-info { padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.upsell-title { font-size: 13px; font-weight: 600; color: var(--ink); text-decoration: none; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .upsell-price { font-weight: 800; font-size: 15px; }
-.upsell-price s { color: var(--muted); font-weight: 500; font-size: 13px; margin-left: 4px; }
-.upsell-info form { margin-top: auto; }
-.upsell-add { display: block; width: 100%; margin-top: auto; text-align: center; background: var(--c3); color: var(--ink); border: 2px solid var(--c3); border-radius: 999px; padding: 9px 12px; font-weight: 800; font-size: 14px; text-decoration: none; cursor: pointer; transition: background .15s, color .15s; }
+.upsell-price s { color: var(--muted); font-weight: 500; font-size: 12px; margin-left: 4px; }
+.upsell-add { display: block; width: 100%; margin-top: auto; text-align: center; background: var(--c3); color: var(--ink); border: 2px solid var(--c3); border-radius: 999px; padding: 6px 10px; font-weight: 800; font-size: 13px; text-decoration: none; cursor: pointer; font-family: inherit; transition: background .15s, color .15s; }
 .upsell-add:hover { background: var(--ink); border-color: var(--ink); color: var(--c3); }
-@media (max-width: 900px) { .upsell-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) {
+  .cart-footer.has-upsell { grid-template-columns: minmax(0, 1fr); }
+  .cart-footer.has-upsell .cart-totals { position: static; }
+  .upsell-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; padding-bottom: 4px; }
+  .upsell-card { flex: 0 0 78%; scroll-snap-align: start; }
+}

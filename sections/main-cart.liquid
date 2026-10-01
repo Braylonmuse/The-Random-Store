@@ -1,3 +1,61 @@
+{%- comment -%} Build the "You may also like" list once; shown beside the checkout box. {%- endcomment -%}
+{%- assign upsell_list = '' -%}
+{%- if section.settings.show_upsell -%}
+  {%- assign up_col = section.settings.upsell_collection -%}
+  {%- if up_col == blank -%}{%- assign up_col = collections.all -%}{%- endif -%}
+  {%- assign max_cents = section.settings.upsell_max_price | times: 100 -%}
+  {%- assign in_cart = '' -%}
+  {%- for item in cart.items -%}{%- assign in_cart = in_cart | append: ',' | append: item.product_id | append: ',' -%}{%- endfor -%}
+  {%- assign up_products = up_col.products | sort: 'price' -%}
+  {%- assign shown = 0 -%}
+  {%- for product in up_products -%}
+    {%- if shown >= section.settings.upsell_limit -%}{%- break -%}{%- endif -%}
+    {%- assign pid = ',' | append: product.id | append: ',' -%}
+    {%- if product.available and product.price <= max_cents -%}
+      {%- unless in_cart contains pid -%}
+        {%- assign shown = shown | plus: 1 -%}
+        {%- assign upsell_list = upsell_list | append: product.handle | append: '|' -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- assign upsell_handles = upsell_list | split: '|' -%}
+
+{%- capture upsell_block -%}
+  {%- if upsell_handles.size > 0 -%}
+    <section class="cart-upsell" aria-labelledby="CartUpsellHeading">
+      <div class="upsell-head">
+        <h2 id="CartUpsellHeading">{{ section.settings.upsell_heading }}</h2>
+        {%- if section.settings.upsell_subtext != blank -%}<p>{{ section.settings.upsell_subtext }}</p>{%- endif -%}
+      </div>
+      <div class="upsell-row">
+        {%- for h in upsell_handles -%}
+          {%- assign product = all_products[h] -%}
+          <div class="upsell-card">
+            <a class="upsell-thumb" href="{{ product.url }}">
+              {%- if product.featured_image -%}
+                {{ product.featured_image | image_url: width: 300 | image_tag: loading: 'lazy', alt: product.title | escape }}
+              {%- else -%}<span class="ph">🛍️</span>{%- endif -%}
+            </a>
+            <div class="upsell-info">
+              <a class="upsell-title" href="{{ product.url }}">{{ product.title }}</a>
+              <div class="upsell-price">
+                {{ product.price | money }}
+                {%- if product.compare_at_price > product.price %} <s>{{ product.compare_at_price | money }}</s>{% endif -%}
+              </div>
+              {%- if product.has_only_default_variant -%}
+                <button type="submit" class="upsell-add" form="UpsellAdd-{{ product.id }}">+ Add</button>
+              {%- else -%}
+                <a class="upsell-add" href="{{ product.url }}">Choose options</a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </section>
+  {%- endif -%}
+{%- endcapture -%}
+
 <div class="cart-page">
   <h1>Your cart</h1>
 
@@ -56,7 +114,8 @@
         {%- endfor -%}
       </div>
 
-      <div class="cart-footer">
+      <div class="cart-footer{% if upsell_handles.size > 0 %} has-upsell{% endif %}">
+        {{ upsell_block }}
         <div class="cart-totals">
           <div class="dt-row"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
           <div class="dt-row"><span>Shipping</span><span>Calculated at checkout</span></div>
@@ -83,59 +142,18 @@
     </form>
   {%- endif -%}
 
-  {%- if section.settings.show_upsell -%}
-    {%- assign up_col = section.settings.upsell_collection -%}
-    {%- if up_col == blank -%}{%- assign up_col = collections.all -%}{%- endif -%}
-    {%- assign max_cents = section.settings.upsell_max_price | times: 100 -%}
-    {%- assign in_cart = '' -%}
-    {%- for item in cart.items -%}{%- assign in_cart = in_cart | append: ',' | append: item.product_id | append: ',' -%}{%- endfor -%}
-    {%- assign up_products = up_col.products | sort: 'price' -%}
-    {%- capture upsell_cards -%}
-      {%- assign shown = 0 -%}
-      {%- for product in up_products -%}
-        {%- if shown >= section.settings.upsell_limit -%}{%- break -%}{%- endif -%}
-        {%- assign pid = ',' | append: product.id | append: ',' -%}
-        {%- if product.available and product.price <= max_cents -%}
-          {%- unless in_cart contains pid -%}
-            {%- assign shown = shown | plus: 1 -%}
-            <div class="upsell-card">
-              <a class="upsell-thumb" href="{{ product.url }}">
-                {%- if product.featured_image -%}
-                  {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: product.title | escape }}
-                {%- else -%}<span class="ph">🛍️</span>{%- endif -%}
-              </a>
-              <div class="upsell-info">
-                <a class="upsell-title" href="{{ product.url }}">{{ product.title }}</a>
-                <div class="upsell-price">
-                  {{ product.price | money }}
-                  {%- if product.compare_at_price > product.price %} <s>{{ product.compare_at_price | money }}</s>{% endif -%}
-                </div>
-                {%- if product.has_only_default_variant -%}
-                  <form action="{{ routes.cart_add_url }}" method="post">
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    <input type="hidden" name="quantity" value="1">
-                    <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
-                    <button type="submit" class="upsell-add">+ Add</button>
-                  </form>
-                {%- else -%}
-                  <a class="upsell-add" href="{{ product.url }}">Choose options</a>
-                {%- endif -%}
-              </div>
-            </div>
-          {%- endunless -%}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endcapture -%}
-    {%- if upsell_cards != blank -%}
-      <section class="cart-upsell" aria-labelledby="CartUpsellHeading">
-        <div class="section-head">
-          <h2 id="CartUpsellHeading">{{ section.settings.upsell_heading }}</h2>
-          {%- if section.settings.upsell_subtext != blank -%}<p>{{ section.settings.upsell_subtext }}</p>{%- endif -%}
-        </div>
-        <div class="upsell-row">{{ upsell_cards }}</div>
-      </section>
+  {%- comment -%} Add-to-cart forms live outside the cart form (forms can't nest); buttons point here via form="". {%- endcomment -%}
+  {%- for h in upsell_handles -%}
+    {%- assign product = all_products[h] -%}
+    {%- if product.has_only_default_variant -%}
+      <form id="UpsellAdd-{{ product.id }}" action="{{ routes.cart_add_url }}" method="post" hidden>
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
+      </form>
     {%- endif -%}
-  {%- endif -%}
+  {%- endfor -%}
+  {%- if cart.item_count == 0 -%}{{ upsell_block }}{%- endif -%}
 </div>
 
 {% schema %}
