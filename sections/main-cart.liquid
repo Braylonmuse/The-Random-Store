@@ -82,6 +82,60 @@
       </div>
     </form>
   {%- endif -%}
+
+  {%- if section.settings.show_upsell -%}
+    {%- assign up_col = section.settings.upsell_collection -%}
+    {%- if up_col == blank -%}{%- assign up_col = collections.all -%}{%- endif -%}
+    {%- assign max_cents = section.settings.upsell_max_price | times: 100 -%}
+    {%- assign in_cart = '' -%}
+    {%- for item in cart.items -%}{%- assign in_cart = in_cart | append: ',' | append: item.product_id | append: ',' -%}{%- endfor -%}
+    {%- assign up_products = up_col.products | sort: 'price' -%}
+    {%- capture upsell_cards -%}
+      {%- assign shown = 0 -%}
+      {%- for product in up_products -%}
+        {%- if shown >= section.settings.upsell_limit -%}{%- break -%}{%- endif -%}
+        {%- assign pid = ',' | append: product.id | append: ',' -%}
+        {%- if product.available and product.price <= max_cents -%}
+          {%- unless in_cart contains pid -%}
+            {%- assign shown = shown | plus: 1 -%}
+            <div class="upsell-card">
+              <a class="upsell-thumb" href="{{ product.url }}">
+                {%- if product.featured_image -%}
+                  {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: product.title | escape }}
+                {%- else -%}<span class="ph">🛍️</span>{%- endif -%}
+              </a>
+              <div class="upsell-info">
+                <a class="upsell-title" href="{{ product.url }}">{{ product.title }}</a>
+                <div class="upsell-price">
+                  {{ product.price | money }}
+                  {%- if product.compare_at_price > product.price %} <s>{{ product.compare_at_price | money }}</s>{% endif -%}
+                </div>
+                {%- if product.has_only_default_variant -%}
+                  <form action="{{ routes.cart_add_url }}" method="post">
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
+                    <button type="submit" class="upsell-add">+ Add</button>
+                  </form>
+                {%- else -%}
+                  <a class="upsell-add" href="{{ product.url }}">Choose options</a>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if upsell_cards != blank -%}
+      <section class="cart-upsell" aria-labelledby="CartUpsellHeading">
+        <div class="section-head">
+          <h2 id="CartUpsellHeading">{{ section.settings.upsell_heading }}</h2>
+          {%- if section.settings.upsell_subtext != blank -%}<p>{{ section.settings.upsell_subtext }}</p>{%- endif -%}
+        </div>
+        <div class="upsell-row">{{ upsell_cards }}</div>
+      </section>
+    {%- endif -%}
+  {%- endif -%}
 </div>
 
 {% schema %}
@@ -100,6 +154,49 @@
       "id": "free_shipping_threshold",
       "label": "Free shipping threshold",
       "default": 70
+    },
+    {
+      "type": "header",
+      "content": "You may also like"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_upsell",
+      "label": "Show \"You may also like\"",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "upsell_heading",
+      "label": "Heading",
+      "default": "You may also like"
+    },
+    {
+      "type": "text",
+      "id": "upsell_subtext",
+      "label": "Subtext",
+      "default": "Little add-ons under $30, shipped with your order."
+    },
+    {
+      "type": "collection",
+      "id": "upsell_collection",
+      "label": "Pull products from",
+      "info": "Leave empty to use all products."
+    },
+    {
+      "type": "number",
+      "id": "upsell_max_price",
+      "label": "Max price (USD)",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "upsell_limit",
+      "label": "How many to show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
     }
   ]
 }
