@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 2027 Reset Kit — Digital Planner + Budget</title>
+<meta name="description" content="An 86-page tappable iPad planner and a budget spreadsheet that does the math for you. Instant download, $12.">
+<meta property="og:title" content="The 2027 Reset Kit">
+<meta property="og:description" content="Digital planner + budget spreadsheet. Plan the year. Run the money.">
+<meta property="og:image" content="/img/og.jpg">
+<meta property="og:type" content="product">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#24382F">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%2324382F'/><circle cx='42' cy='26' r='12' fill='%23C2593B'/><text x='10' y='52' font-family='Georgia' font-size='26' font-weight='700' fill='%23F3EEE4'>27</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #24382F;
+    --forest-2: #2E473C;
+    --paper: #F6F1E9;
+    --ink: #1C1A17;
+    --muted: #5E5850;
+    --clay: #C2593B;
+    --clay-dark: #A84A30;
+    --mint: #CFE0D6;
+    --line: #DDD4C6;
+    --measure: 34rem;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 "Figtree", system-ui, sans-serif;
+    padding-bottom: 5.5rem; /* room for the sticky buy bar on phones */
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; border-radius: 4px; }
+
+  .wrap { width: min(72rem, 100% - 2.5rem); margin-inline: auto; }
+
+  /* ---------- hero ---------- */
+  .hero { background: var(--forest); color: var(--paper); overflow: hidden; }
+  .hero .wrap { padding-top: 1.5rem; }
+  .brand { font-weight: 700; font-size: .95rem; letter-spacing: .01em; color: var(--mint); margin: 0; }
+  .year {
+    font-family: "Gloock", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(7.5rem, 34vw, 19rem);
+    line-height: .82;
+    letter-spacing: -.035em;
+    margin: 1.75rem 0 0 -.06em;
+    color: var(--paper);
+    position: relative;
+    width: fit-content;
+    padding-right: .2em;
+  }
+  .year .sun {
+    position: absolute;
+    width: .34em; height: .34em;
+    border-radius: 50%;
+    background: var(--clay);
+    right: -.08em; top: -.02em;
+    z-index: -0;
+  }
+  .hero-copy { max-width: var(--measure); }
+  .hero h1 {
+    font-family: "Gloock", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 8vw, 3.6rem);
+    line-height: 1.05;
+    margin: .75rem 0 .75rem;
+  }
+  .hero p.lede { color: var(--mint); font-size: 1.15rem; margin: 0 0 1.75rem; }
+  .buy-row { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+  .price { font-family: "Gloock", Georgia, serif; font-size: 2.4rem; line-height: 1; }
+  .price small { font-family: "Figtree", sans-serif; font-size: .9rem; color: var(--mint); display: block; margin-top: .3rem; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--clay); color: #fff; text-decoration: none;
+    font-weight: 700; font-size: 1.1rem;
+    padding: 1rem 1.9rem; border-radius: 999px; border: 0;
+    min-height: 3.25rem;
+    transition: background-color .15s ease, transform .15s ease;
+  }
+  .btn:hover { background: var(--clay-dark); }
+  .btn:active { transform: scale(.98); }
+  .hero-shot { margin-top: 2.5rem; margin-inline: -1.25rem; }
+  .hero-shot img { width: 100%; }
+
+  @media (min-width: 900px) {
+    .hero-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 2rem; align-items: end; }
+    .year { grid-column: 1 / -1; }
+    .hero-copy { padding-bottom: 4rem; }
+    .hero-shot { margin: 0 -2rem 0 0; }
+  }
+
+  /* ---------- sections ---------- */
+  section { padding: 4.5rem 0; }
+  h2 {
+    font-family: "Gloock", Georgia, serif; font-weight: 400;
+    font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.1;
+    margin: 0 0 1rem; max-width: 22ch;
+  }
+  .intro { color: var(--muted); max-width: var(--measure); margin: 0 0 2.5rem; }
+
+  .items { display: grid; gap: 3rem; }
+  @media (min-width: 820px) { .items { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+  .item h3 { font-family: "Gloock", Georgia, serif; font-weight: 400; font-size: 1.75rem; margin: 1.25rem 0 .5rem; }
+  .item p { margin: 0 0 1rem; color: var(--muted); max-width: var(--measure); }
+  .item ul { margin: 0; padding: 0; list-style: none; }
+  .item li { padding: .6rem 0; border-top: 1px solid var(--line); }
+  .item li:last-child { border-bottom: 1px solid var(--line); }
+  .item li b { font-weight: 700; }
+
+  /* page gallery: horizontal swipe on phones */
+  .pages { background: var(--forest-2); color: var(--paper); }
+  .pages .intro { color: var(--mint); }
+  .strip {
+    display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: .5rem 1.25rem 1.5rem; margin-inline: -1.25rem;
+    -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+  }
+  .strip figure { margin: 0; flex: 0 0 min(82%, 30rem); scroll-snap-align: center; }
+  .strip img { border-radius: 14px; }
+  .strip figcaption { color: var(--mint); font-size: .95rem; margin-top: .5rem; }
+
+  /* steps — this one really is a sequence */
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.75rem; counter-reset: s; max-width: 46rem; }
+  @media (min-width: 820px) { .steps { grid-template-columns: repeat(3, 1fr); max-width: none; } }
+  .steps li { counter-increment: s; }
+  .steps li::before {
+    content: counter(s);
+    font-family: "Gloock", Georgia, serif; font-size: 2.6rem; line-height: 1;
+    color: var(--clay); display: block; margin-bottom: .5rem;
+  }
+  .steps h3 { font-size: 1.15rem; margin: 0 0 .35rem; }
+  .steps p { margin: 0; color: var(--muted); }
+
+  /* faq */
+  .faq { max-width: 46rem; }
+  details { border-top: 1px solid var(--line); padding: 1.1rem 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-weight: 700; font-size: 1.1rem; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-family: "Gloock", Georgia, serif; font-size: 1.5rem; line-height: 1; color: var(--clay); }
+  details[open] summary::after { content: "\2212"; }
+  details p { margin: .6rem 0 0; color: var(--muted); max-width: var(--measure); }
+
+  .closer { background: var(--forest); color: var(--paper); text-align: left; }
+  .closer h2 { color: var(--paper); }
+  .closer p { color: var(--mint); max-width: var(--measure); margin: 0 0 1.75rem; }
+
+  footer { padding: 2rem 0 3rem; color: var(--muted); font-size: .9rem; }
+
+  /* sticky buy bar (phones) */
+  .bar {
+    position: fixed; inset: auto 0 0 0; z-index: 10;
+    background: rgba(243, 238, 228, .96); backdrop-filter: blur(8px);
+    border-top: 1px solid var(--line);
+    padding: .75rem 1.25rem calc(.75rem + env(safe-area-inset-bottom));
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    transform: translateY(110%); transition: transform .25s ease;
+  }
+  .bar.show { transform: none; }
+  .bar span { font-weight: 700; }
+  .bar span small { display: block; font-weight: 400; color: var(--muted); font-size: .85rem; }
+  .bar .btn { padding: .8rem 1.5rem; font-size: 1rem; min-height: 2.9rem; }
+  @media (min-width: 900px) { .bar { display: none; } body { padding-bottom: 0; } }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="brand">The Reset Kit</p>
+    <div class="hero-grid">
+      <p class="year" aria-hidden="true">2027<span class="sun"></span></p>
+      <div class="hero-copy">
+        <h1>Plan the year. Run the money.</h1>
+        <p class="lede">A tappable iPad planner and a budget spreadsheet that does the math for you. One download, ready tonight.</p>
+        <div class="buy-row">
+          <a class="btn buy" href="#" data-buy>Get the kit</a>
+          <div class="price">$12<small>Instant download</small></div>
+        </div>
+      </div>
+      <div class="hero-shot">
+        <img src="/img/hero.jpg" width="1400" height="910" alt="The 2027 planner open to January on an iPad, next to the budget dashboard on a laptop">
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="inside">
+    <div class="wrap">
+      <h2>Two tools that work together</h2>
+      <p class="intro">The planner handles your time. The spreadsheet handles your money. Both are built so you open them and start, with nothing to set up.</p>
+      <div class="items">
+        <article class="item">
+          <img src="/img/month.jpg" width="840" height="681" alt="Monthly calendar page with side tabs for every month" loading="lazy">
+          <h3>2027 digital planner</h3>
+          <p>An 86-page PDF made for GoodNotes, Notability and any app you can write in. Tap a tab to jump to any month, tap a date to open that week.</p>
+          <ul>
+            <li><b>12 monthly calendars</b> with a focus list and reminders</li>
+            <li><b>53 weekly pages</b> with your top 3 and a to-do list</li>
+            <li><b>12 habit trackers</b>, one for every month</li>
+            <li><b>Goals, year at a glance and notes</b></li>
+          </ul>
+        </article>
+        <article class="item">
+          <img src="/img/budget.jpg" width="896" height="636" alt="Budget dashboard showing income, spending and money left over" loading="lazy">
+          <h3>Budget spreadsheet</h3>
+          <p>Works in Google Sheets, Excel and Numbers. Log what you spend, and it shows where every dollar went and what's left.</p>
+          <ul>
+            <li><b>Dashboard</b> with planned vs. actual for each month</li>
+            <li><b>Spending log</b> with category dropdowns</li>
+            <li><b>Savings goals</b> that tell you how much to save each month</li>
+            <li><b>Debt payoff</b> with your debt-free date</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="pages" aria-labelledby="pages-h">
+    <div class="wrap">
+      <h2 id="pages-h">Look inside</h2>
+      <p class="intro">Swipe through a few of the pages.</p>
+      <div class="strip" tabindex="0" aria-label="Planner page previews">
+        <figure><img src="/img/week.jpg" width="840" height="681" alt="Weekly planning page" loading="lazy"><figcaption>Weekly pages</figcaption></figure>
+        <figure><img src="/img/habit.jpg" width="840" height="681" alt="Monthly habit tracker" loading="lazy"><figcaption>Habit tracker</figcaption></figure>
+        <figure><img src="/img/goals.jpg" width="840" height="681" alt="2027 goals page" loading="lazy"><figcaption>Goals</figcaption></figure>
+        <figure><img src="/img/cover.jpg" width="840" height="681" alt="Planner cover" loading="lazy"><figcaption>Cover</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="how-h">
+    <div class="wrap">
+      <h2 id="how-h">How it works</h2>
+      <ol class="steps">
+        <li><h3>Check out</h3><p>Pay with card, Apple Pay, Google Pay or Shop Pay. Takes under a minute.</p></li>
+        <li><h3>Download</h3><p>Your download link shows up right after you pay and lands in your email too.</p></li>
+        <li><h3>Open and go</h3><p>Put the planner in your notes app and the budget in Google Sheets. Start today.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="faq-h">
+    <div class="wrap faq">
+      <h2 id="faq-h">Questions</h2>
+      <details><summary>Do I need an iPad?</summary><p>No. The planner works best on a tablet with a note app, but it opens on any phone, tablet or computer, and you can print any page.</p></details>
+      <details><summary>Do I need Excel?</summary><p>No. Upload the spreadsheet to Google Drive and open it with Google Sheets for free. It also works in Excel and Apple Numbers.</p></details>
+      <details><summary>Is anything shipped to me?</summary><p>No. It's a digital download, so nothing physical comes in the mail.</p></details>
+      <details><summary>I didn't get my files.</summary><p>Check your spam folder for the order email. Still nothing? Reply to your receipt email and you'll get the files sent again.</p></details>
+      <details><summary>Can I share it with a friend?</summary><p>The files are for your personal use. Send your friend this page instead.</p></details>
+    </div>
+  </section>
+
+  <section class="closer">
+    <div class="wrap">
+      <h2>Start 2027 with a plan</h2>
+      <p>Everything in one download for $12. Set it up tonight and walk into January ready.</p>
+      <a class="btn buy" href="#" data-buy>Get the kit</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">The 2027 Reset Kit. A digital product, delivered instantly.</div>
+</footer>
+
+<div class="bar" id="bar" aria-hidden="true">
+  <span>2027 Reset Kit<small>$12, instant download</small></span>
+  <a class="btn buy" href="#" data-buy tabindex="-1">Get the kit</a>
+</div>
+
+<script>
+  // Checkout link: Shopify cart permalink that goes straight to checkout.
+  var BUY_URL = "__BUY_URL__";
+  if (BUY_URL.indexOf("http") !== 0) BUY_URL = "";
+  document.querySelectorAll("[data-buy]").forEach(function (a) {
+    if (BUY_URL) a.href = BUY_URL;
+    else a.addEventListener("click", function (e) { e.preventDefault(); alert("Checkout opens soon."); });
+  });
+  // show the sticky bar once the hero button scrolls away
+  var bar = document.getElementById("bar");
+  var heroBtn = document.querySelector(".hero .btn");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) {
+      var hidden = !es[0].isIntersecting;
+      bar.classList.toggle("show", hidden);
+      bar.setAttribute("aria-hidden", hidden ? "false" : "true");
+      bar.querySelector("a").tabIndex = hidden ? 0 : -1;
+    }).observe(heroBtn);
+  }
+</script>
+</body>
+</html>
