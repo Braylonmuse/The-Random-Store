@@ -3,6 +3,8 @@
     "main": {
       "type": "main-cart",
       "settings": {
+        "show_shipping_bar": false,
+        "show_upsell": false,
         "upsell_collection": "random-finds"
       }
     }
