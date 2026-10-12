@@ -27,10 +27,8 @@
       {%- endif -%}
       {{ product.price | money }}
     </div>
-    <div class="product-desc">{{ product.description }}</div>
-
     {% form 'product', product %}
-      {%- unless product.has_only_default_variant -%}
+      {%- if product.variants.size > 1 -%}
         <div class="variant-group">
           <label for="Variants-{{ section.id }}">Select option</label>
           <select class="variant-select" id="Variants-{{ section.id }}" name="id">
@@ -47,7 +45,7 @@
         </div>
       {%- else -%}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-      {%- endunless -%}
+      {%- endif -%}
 
       <div class="variant-group">
         <label for="Quantity-{{ section.id }}">Quantity</label>
@@ -64,6 +62,8 @@
       <span>🔒 Secure checkout</span>
       <span>💬 Real support</span>
     </div>
+
+    <div class="product-desc">{{ product.description }}</div>
   </div>
 </div>
 
