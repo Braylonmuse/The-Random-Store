@@ -118,7 +118,11 @@
         {{ upsell_block }}
         <div class="cart-totals">
           <div class="dt-row"><span>Subtotal</span><span>{{ cart.total_price | money }}</span></div>
-          <div class="dt-row"><span>Shipping</span><span>Calculated at checkout</span></div>
+          {%- if localization.country.iso_code == 'US' -%}
+            <div class="dt-row"><span>Shipping</span><span><strong>FREE</strong></span></div>
+          {%- else -%}
+            <div class="dt-row"><span>Shipping</span><span>Calculated at checkout</span></div>
+          {%- endif -%}
           <div class="dt-row total"><span>Total</span><span>{{ cart.total_price | money }}</span></div>
           <button type="submit" class="fbtn" name="update">Update Cart</button>
           <button type="submit" class="checkout-btn" name="checkout">Checkout securely 🔒</button>
