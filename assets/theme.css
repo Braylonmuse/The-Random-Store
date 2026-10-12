@@ -71,8 +71,8 @@ a { color: inherit; }
 .mk-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 13px; font-weight: 700; margin-bottom: 18px; }
 .mk-eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: #3CFF9E; box-shadow: 0 0 0 4px rgba(60,255,158,0.25); animation: pulse 1.8s ease-in-out infinite; }
 @keyframes pulse { 0%,100% { box-shadow: 0 0 0 3px rgba(60,255,158,0.35); } 50% { box-shadow: 0 0 0 7px rgba(60,255,158,0.05); } }
-.mk-hero h1 { font-size: 58px; line-height: 1.02; font-weight: 800; letter-spacing: -0.035em; margin-bottom: 16px; }
-.mk-hero h1 em { font-style: normal; background: var(--ink); color: var(--c3); padding: 0 0.14em; border-radius: 12px; }
+.mk-hero h1 { font-size: 58px; line-height: 1.1; font-weight: 800; letter-spacing: -0.035em; margin-bottom: 16px; }
+.mk-hero h1 em { font-style: normal; display: inline-block; line-height: 1.05; margin-top: 0.12em; background: var(--ink); color: var(--c3); padding: 0.02em 0.16em 0.08em; border-radius: 12px; }
 .mk-hero p { font-size: 17px; line-height: 1.6; color: rgba(17,17,17,0.82); max-width: 470px; margin-bottom: 28px; }
 .mk-hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 .mk-hero .btn-dark { background: var(--ink); color: var(--c3); box-shadow: 0 10px 24px rgba(0,0,0,0.22); }
