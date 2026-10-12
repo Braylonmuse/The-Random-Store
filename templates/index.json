@@ -20,7 +20,7 @@
         "btn1_link": "",
         "btn2_label": "See what's trending",
         "btn2_link": "",
-        "perks": "🚚 Free US shipping $70+ | 🔒 Secure checkout",
+        "perks": "🚚 Free US shipping | 🔒 Secure checkout",
         "collection": "random-finds",
         "sticker": "New finds 🔥"
       }
@@ -133,8 +133,8 @@
           "type": "card",
           "settings": {
             "icon": "🚚",
-            "title": "Free US shipping at $70",
-            "text": "Standard shipping is free on US orders of $70 or more."
+            "title": "Free US shipping",
+            "text": "Standard shipping is free on every US order."
           }
         },
         "card-2": {
